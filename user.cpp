@@ -1,8 +1,14 @@
 #include <user.h>
 
-User::User(QString name, QString surname) :
-    name(name),
-    surname(surname) {}
+User::User() {}
+
+void User::setName(QString name){
+    name = name;
+}
+
+void User::setSurname(QString surname){
+    surname = surname;
+}
 
 void User::setWhoPays(QString who){
     whoPays = who;
@@ -104,4 +110,40 @@ int User::getEndMonth(){
 
 int User::getEndYear(){
     return endYear;
+}
+
+void User::read(const QJsonObject &json){
+    name = json["name"].toString();
+    surname = json["surname"].toString();
+    whoPays = json["whopays"].toString();
+    dailyTariff = (float) json["tariff"].toDouble();
+    meetingroomHoursLeft = json["meetinghoursleft"].toInt();
+    allDayAccess = json["alldayaccess"].toBool();
+    depositKey = json["depositkey"].toBool();
+    ethernet = json["ethernet"].toBool();
+    telephone = json["telephone"].toBool();
+    beginDay = json["beginday"].toInt();
+    beginMonth = json["beginmonth"].toInt();
+    beginYear = json["beginyear"].toInt();
+    endDay = json["endday"].toInt();
+    endMonth = json["endmonth"].toInt();
+    endYear = json["endyear"].toInt();
+}
+
+void User::write(QJsonObject &json) const{
+    json["name"] = name;
+    json["surname"]= surname;
+    json["whopays"] = whoPays;
+    json["tariff"] = dailyTariff;
+    json["meetinghoursleft"] = meetingroomHoursLeft;
+    json["alldayaccess"] = allDayAccess;
+    json["depositkey"] = depositKey;
+    json["ethernet"] = ethernet;
+    json["telephone"] = telephone;
+    json["beginday"] = beginDay;
+    json["beginmonth"] = beginMonth;
+    json["beginyear"] = beginYear;
+    json["endday"] = endDay;
+    json["endmonth"] = endMonth;
+    json["endyear"] = endYear;
 }

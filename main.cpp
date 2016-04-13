@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <QGraphicsRectItem>
 #include <user.h>
+#include <userslist.h>
 
 
 int main(int argc, char *argv[])
@@ -12,10 +13,17 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     PositionsWindow w;
     w.show();
+    UsersList list;
+    list.loadData();
 
-    User user("Giovanni","Muciaccia");
+    User user;
+    user.setName("Giovanni");
+    user.setSurname("Muciaccia");
 
-    std::cout << user.getName().toStdString() << " " << user.getSurname().toStdString() << std::endl;
+    list.addUser(user);
+
+    std::cout << "Code = " << list.saveData() << std::endl;
+    std::cout << "n = " << list.numberUsers() << std::endl;
 
 
 

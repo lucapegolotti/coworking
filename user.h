@@ -3,11 +3,16 @@
 
 #include <QUuid>
 #include <QString>
+#include <QJsonObject>
 
 class User {
  public:
 
-    User(QString name, QString surname);
+    User();
+
+    void setName(QString name);
+
+    void setSurname(QString surname);
 
     void setWhoPays(QString who);
 
@@ -57,14 +62,18 @@ class User {
 
     int getEndYear();
 
+    void read(const QJsonObject& json);
+
+    void write(QJsonObject& json) const;
+
+
+
 
  private:
-    // anagraph
-    const QUuid id;
 
-    const QString name;
+    QString name;
 
-    const QString surname;
+    QString surname;
 
     QString whoPays;
 

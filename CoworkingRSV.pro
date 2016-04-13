@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         positionswindow.cpp \
-    user.cpp
+    user.cpp \
+    userslist.cpp
 
 HEADERS  += positionswindow.h \
-    user.h
+    user.h \
+    userslist.h
 
 FORMS    += positionswindow.ui
