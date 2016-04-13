@@ -12,8 +12,7 @@ namespace Ui {
 class PositionsWindow;
 }
 
-class PositionsWindow : public QMainWindow
-{
+class PositionsWindow : public QMainWindow {
     Q_OBJECT
 
 public:

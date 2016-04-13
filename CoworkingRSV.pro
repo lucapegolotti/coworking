@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        positionswindow.cpp
+        positionswindow.cpp \
+    user.cpp
 
-HEADERS  += positionswindow.h
+HEADERS  += positionswindow.h \
+    user.h
 
 FORMS    += positionswindow.ui
