@@ -3,10 +3,10 @@
 
 #include <QMainWindow>
 #include <QGraphicsRectItem>
-#include <workstation.h>
 #include <vector>
 #include <QMouseEvent>
 #include <ctime>
+#include <iostream>
 
 namespace Ui {
 class PositionsWindow;
@@ -36,6 +36,8 @@ private:
     QColor* freeSpotColor;
 
     QColor* notFreeSpotColor;
+
+    void setTime();
 
 
 
