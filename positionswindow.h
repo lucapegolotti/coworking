@@ -7,6 +7,11 @@
 #include <QMouseEvent>
 #include <ctime>
 #include <iostream>
+#include <userslist.h>
+#include <workstations.h>
+#include <date.h>
+#include <QDate>
+#include <addreservation.h>
 
 namespace Ui {
 class PositionsWindow;
@@ -20,25 +25,33 @@ public:
 
     ~PositionsWindow();
 
-    std::vector<QGraphicsRectItem*> GetWorkstations();
-
     void mousePressEvent(QMouseEvent* event);
 
 public slots:
-    void changeColor();
+    void receiveNewDate(const QDate& date);
+
+    void customMenuRequested(const QPoint &pos);
+
+    void addReservation(bool);
+
+    void addReservationResult(User user);
 
 private:
     Ui::PositionsWindow *ui;
 
-    std::vector<QGraphicsRectItem*> workstations;
+    Workstations workstations;
+
+    UsersList list;
+
+    int lastWorkstationClicked;
+
+    QDate displayedDate;
 
     QColor* freeSpotColor;
 
     QColor* notFreeSpotColor;
 
-    void setTime();
-
-
+    void setTime(Date date);
 
 };
 

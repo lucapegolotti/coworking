@@ -3,30 +3,21 @@
 #include <QGraphicsView>
 #include <vector>
 #include <unistd.h>
+#include "calendar.h"
 #include <QGraphicsRectItem>
 #include <user.h>
-#include <userslist.h>
+#include <date.h>
 
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     PositionsWindow w;
+    Calendar c;
+    QObject::connect(&c,SIGNAL(sendChosenDate(const QDate&)),
+                     &w,SLOT(receiveNewDate(const QDate&)));
     w.show();
-    UsersList list;
-    list.loadData();
-
-    User user;
-    user.setName("Giovanni");
-    user.setSurname("Muciaccia");
-
-    list.addUser(user);
-
-    std::cout << "Code = " << list.saveData() << std::endl;
-    std::cout << "n = " << list.numberUsers() << std::endl;
-
-
-
+    c.show();
 
     return app.exec();
 }

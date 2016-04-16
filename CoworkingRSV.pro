@@ -15,10 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         positionswindow.cpp \
     user.cpp \
-    userslist.cpp
+    userslist.cpp \
+    workstation.cpp \
+    date.cpp \
+    calendar.cpp \
+    addreservation.cpp
 
 HEADERS  += positionswindow.h \
     user.h \
-    userslist.h
+    userslist.h \
+    workstations.h \
+    date.h \
+    calendar.h \
+    addreservation.h
 
-FORMS    += positionswindow.ui
+FORMS    += positionswindow.ui \
+    calendar.ui \
+    addreservation.ui

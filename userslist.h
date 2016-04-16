@@ -9,6 +9,8 @@
 
 class UsersList {
  public:
+    QList<User>& getList();
+
     void addUser(User user);
 
     int numberUsers();
@@ -17,9 +19,9 @@ class UsersList {
 
     void write(QJsonObject& json) const;
 
-    bool saveData();
+    bool saveData(QString format);
 
-    bool loadData();
+    bool loadData(QString format);
 
  private:
     QList<User> list;

@@ -16,6 +16,8 @@ class User {
 
     void setWhoPays(QString who);
 
+    void setWorkstation(int workstation);
+
     void setDailyTariff(float tariff);
 
     void detractMeetingroomHours(int hoursSpent);
@@ -37,6 +39,8 @@ class User {
     QString getSurname();
 
     QString getWhoPays();
+
+    int getWorkstation();
 
     float getDailyTariff();
 
@@ -76,6 +80,8 @@ class User {
     QString surname;
 
     QString whoPays;
+
+    int workstation;
 
     float dailyTariff;
 

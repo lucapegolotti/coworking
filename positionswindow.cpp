@@ -8,8 +8,9 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     freeSpotColor(new QColor(114,233,200)),
     notFreeSpotColor(new QColor(253,152,152)){
 
+    list.loadData("json");
+
     ui->setupUi(this);
-    setTime();
 
     QGraphicsView* positionsView =  ui->positionsView;
 
@@ -24,166 +25,166 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
 
 
     QGraphicsRectItem* rect = new QGraphicsRectItem(mult*(-5+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(-5+xorigin),mult*50+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*50+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(95+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(120+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(95+xorigin),mult*50+multy,mult*50,mult*25);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(195+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(220+xorigin),mult*0+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
-    scene->addItem(rect);
-    workstations.push_back(rect);
 
-    rect = new QGraphicsRectItem(mult*(-30+xorigin),mult*175+multy,mult*50,mult*35);
-    rect->setBrush(*freeSpotColor);
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
+
+    rect = new QGraphicsRectItem(mult*(-30+xorigin),mult*175+multy,mult*50,mult*25);
+
+    scene->addItem(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(-30+xorigin),mult*200+multy,mult*50,mult*25);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*175+multy,mult*50,mult*25);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*200+multy,mult*50,mult*25);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(70+xorigin),mult*175+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(200+xorigin),mult*250+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(225+xorigin),mult*250+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(200+xorigin),mult*200+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(225+xorigin),mult*200+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(200+xorigin),mult*150+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(225+xorigin),mult*150+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     const int a = 150;
     const int b = -10;
     rect = new QGraphicsRectItem(mult*(a+200+xorigin),mult*(b+250)+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*250+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*a+mult*(200+xorigin),mult*b+mult*200+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*200+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*a+mult*(200+xorigin),mult*b+mult*150+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*150+multy,mult*25,mult*50);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(270+xorigin),mult*30+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(310+xorigin),mult*30+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(350+xorigin),mult*30+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(270+xorigin),mult*50+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(310+xorigin),mult*50+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(350+xorigin),mult*50+multy,mult*40,mult*20);
-    rect->setBrush(*freeSpotColor);
+
     scene->addItem(rect);
-    workstations.push_back(rect);
+    workstations.addGraphicItem(rect);
 
 
     // big rectangles
@@ -225,8 +226,13 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     scene->addItem(line);
 
 
-
+    displayedDate = QDate::currentDate();
+    workstations.colorItems(list,displayedDate,*freeSpotColor,*notFreeSpotColor);
     positionsView->setScene(scene);
+
+    ui->positionsView->setContextMenuPolicy(Qt::CustomContextMenu);
+    QObject::connect(ui->positionsView, SIGNAL(customContextMenuRequested(QPoint)),
+                this,SLOT(customMenuRequested(QPoint)));
 
 
 }
@@ -238,16 +244,48 @@ PositionsWindow::~PositionsWindow(){
     delete notFreeSpotColor;
 }
 
-void PositionsWindow::changeColor(){
+void PositionsWindow::customMenuRequested(const QPoint &pos){
+
+    QPointF position_old = pos;
+    QPointF* new_position  = new QPointF(position_old.x() - 120, position_old.y() - 25 );
+
+    lastWorkstationClicked = workstations.pointIsContainedInWorkstationN(*new_position);
+    if (lastWorkstationClicked != -1){
+    QMenu *menu = new QMenu(this);
+    QAction* action = new QAction("Aggiungi prenotazione",this);
+
+    QObject::connect(action,SIGNAL(triggered(bool)),
+                     this,SLOT(addReservation(bool)));
+
+    menu->addAction(action);
+
+
+    menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
+    }
+}
+
+void PositionsWindow::addReservation(bool){
+    AddReservation* addreservation = new AddReservation(lastWorkstationClicked);
+    QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(User)),
+                     this,SLOT(addReservationResult(User)));
+    addreservation->show();
+
 
 }
 
-std::vector<QGraphicsRectItem*> PositionsWindow::GetWorkstations(){
-    return workstations;
+void PositionsWindow::addReservationResult(User user){
+    list.addUser(user);
+    workstations.colorItems(list,displayedDate,*freeSpotColor,*notFreeSpotColor);
+    list.saveData("json");
 }
 
 void PositionsWindow::mousePressEvent(QMouseEvent* event){
-    QPointF position_old = event->localPos();
+    /*if (event->button() == Qt::RightButton){
+        this->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    }*/
+
+  /*  QPointF position_old = event->localPos();
     QPointF* new_position  = new QPointF(position_old.x() - 150, position_old.y() - 75 );
 
     for (std::vector<QGraphicsRectItem*>::iterator it = workstations.begin(); it < workstations.end(); it++){
@@ -262,87 +300,12 @@ void PositionsWindow::mousePressEvent(QMouseEvent* event){
             break;
         }
     }
-    delete new_position;
+    delete new_position;*/
 }
 
-void PositionsWindow::setTime(){
-    time_t now = time(0);
-    tm* time_format = gmtime(&now);
-    QString wday;
-    switch(time_format->tm_wday){
-    case 1:
-        wday = "Lunedì";
-        break;
-    case 2:
-        wday = "Martedì";
-        break;
-    case 3:
-        wday = "Mercoledì";
-        break;
-    case 4:
-        wday = "Giovedì";
-        break;
-    case 5:
-        wday = "Venerdì";
-        break;
-    case 6:
-        wday = "Sabato";
-        break;
-    case 7:
-        wday = "Domenica";
-        break;
-    }
 
-    QString month;
-
-    switch(time_format->tm_mon+1){
-    case 1:
-        month = "Gennaio";
-        break;
-    case 2:
-        month = "Febbraio";
-        break;
-    case 3:
-        month = "Marzo";
-        break;
-    case 4:
-        month = "Aprile";
-        break;
-    case 5:
-        month = "Maggio";
-        break;
-    case 6:
-        month = "Giugno";
-        break;
-    case 7:
-        month = "Luglio";
-        break;
-    case 8:
-        month = "Agosto";
-        break;
-    case 9:
-        month = "Settembre";
-        break;
-    case 10:
-        month = "Ottobre";
-        break;
-    case 11:
-        month = "Novembre";
-        break;
-    case 12:
-        month = "Dicembre";
-        break;
-    }
-
-    QString format_date = wday
-            .append(" ")
-            .append(QString::number(time_format->tm_mday))
-            .append(" ")
-            .append(month)
-            .append(" ")
-            .append(QString::number(time_format->tm_year + 1900));
-
-
-    ui->dateLabel->setText(format_date);
+void PositionsWindow::receiveNewDate(const QDate &date){
+    displayedDate = date;
+    workstations.colorItems(list,date,*freeSpotColor,*notFreeSpotColor);
 }
 

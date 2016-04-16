@@ -1,5 +1,9 @@
 #include <userslist.h>
 
+QList<User>& UsersList::getList(){
+    return list;
+}
+
 void UsersList::addUser(User user){
     list.append(user);
 }
@@ -29,8 +33,10 @@ void UsersList::write(QJsonObject& json) const{
     json["users"] = us_array;
 }
 
-bool UsersList::saveData(){
-    QFile sfile("utenti.dat");
+bool UsersList::saveData(QString format){
+    QFile sfile( format == "json" ?
+                     QStringLiteral("utenti.json") :
+                     QStringLiteral("utenti.dat"));
 
     if (!sfile.open(QIODevice::WriteOnly)){
         qWarning("Could not open file");
@@ -40,16 +46,21 @@ bool UsersList::saveData(){
     QJsonObject json;
     write(json);
     QJsonDocument saveDoc(json);
-    sfile.write(saveDoc.toBinaryData());
+    sfile.write( format == "json" ?
+                     saveDoc.toJson() :
+                     saveDoc.toBinaryData());
+
 
     return true;
 
 }
 
-bool UsersList::loadData(){
-    QFile lfile("utenti.dat");
+bool UsersList::loadData(QString format){
+    QFile lfile( format == "json" ?
+                     QStringLiteral("utenti.json") :
+                     QStringLiteral("utenti.dat"));
 
-    if (!lfile.open(QIODevice::WriteOnly)){
+    if (!lfile.open(QIODevice::ReadOnly)){
         qWarning("Could not open file");
         return false;
     }
@@ -57,7 +68,10 @@ bool UsersList::loadData(){
     QByteArray savedata = lfile.readAll();
 
 
-    QJsonDocument loaddoc(QJsonDocument::fromBinaryData(savedata));
+    QJsonDocument loaddoc(format == "json"?
+                              QJsonDocument::fromJson(savedata) :
+                              QJsonDocument::fromBinaryData(savedata));
+
 
     read(loaddoc.object());
 

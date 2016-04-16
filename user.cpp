@@ -3,15 +3,19 @@
 User::User() {}
 
 void User::setName(QString name){
-    name = name;
+    this->name = name;
 }
 
 void User::setSurname(QString surname){
-    surname = surname;
+    this->surname = surname;
 }
 
 void User::setWhoPays(QString who){
     whoPays = who;
+}
+
+void User::setWorkstation(int workstation){
+    this->workstation = workstation;
 }
 
 void User::setDailyTariff(float tariff){
@@ -62,6 +66,10 @@ QString User::getSurname(){
 
 QString User::getWhoPays(){
     return whoPays;
+}
+
+int User::getWorkstation(){
+    return workstation;
 }
 
 float User::getDailyTariff(){
@@ -116,6 +124,7 @@ void User::read(const QJsonObject &json){
     name = json["name"].toString();
     surname = json["surname"].toString();
     whoPays = json["whopays"].toString();
+    workstation = json["workstation"].toInt();
     dailyTariff = (float) json["tariff"].toDouble();
     meetingroomHoursLeft = json["meetinghoursleft"].toInt();
     allDayAccess = json["alldayaccess"].toBool();
@@ -134,6 +143,7 @@ void User::write(QJsonObject &json) const{
     json["name"] = name;
     json["surname"]= surname;
     json["whopays"] = whoPays;
+    json["workstation"] = workstation;
     json["tariff"] = dailyTariff;
     json["meetinghoursleft"] = meetingroomHoursLeft;
     json["alldayaccess"] = allDayAccess;
