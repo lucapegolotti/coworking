@@ -25,6 +25,10 @@ class Workstations{
 
     bool isWorkstationOfThatColor(int number, QBrush color);
 
+    void updateCurrentOrNextUser(UsersList &list);
+
+    void setToolTips(UsersList &list);
+
 
  private:
     std::vector<QGraphicsRectItem*> workstations;

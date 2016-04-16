@@ -4,6 +4,7 @@
 #include <QUuid>
 #include <QString>
 #include <QJsonObject>
+#include <QDate>
 
 class User {
  public:
@@ -60,11 +61,15 @@ class User {
 
     int getBeginYear();
 
+    QDate getBeginDate();
+
     int getEndDay();
 
     int getEndMonth();
 
     int getEndYear();
+
+    QDate getEndDate();
 
     void read(const QJsonObject& json);
 

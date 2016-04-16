@@ -108,6 +108,11 @@ int User::getBeginYear(){
     return beginYear;
 }
 
+QDate User::getBeginDate(){
+    QDate beginDate(beginYear,beginMonth,beginDay);
+    return beginDate;
+}
+
 int User::getEndDay(){
     return endDay;
 }
@@ -118,6 +123,11 @@ int User::getEndMonth(){
 
 int User::getEndYear(){
     return endYear;
+}
+
+QDate User::getEndDate(){
+    QDate endDate(endYear,endMonth,endDay);
+    return endDate;
 }
 
 void User::read(const QJsonObject &json){
