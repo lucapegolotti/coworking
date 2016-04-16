@@ -4,7 +4,7 @@
 PositionsWindow::PositionsWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::PositionsWindow),
-    workstations(),
+    workstations(QDate::currentDate()),
     freeSpotColor(new QColor(114,233,200)),
     notFreeSpotColor(new QColor(253,152,152)){
 
@@ -30,6 +30,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     workstations.addGraphicItem(rect);
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*0+multy,mult*25,mult*50);
+
+    rect->setToolTip("Postazione 1");
 
     scene->addItem(rect);
     workstations.addGraphicItem(rect);
@@ -227,12 +229,13 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
 
 
     displayedDate = QDate::currentDate();
-    workstations.colorItems(list,displayedDate,*freeSpotColor,*notFreeSpotColor);
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     positionsView->setScene(scene);
 
     ui->positionsView->setContextMenuPolicy(Qt::CustomContextMenu);
     QObject::connect(ui->positionsView, SIGNAL(customContextMenuRequested(QPoint)),
                 this,SLOT(customMenuRequested(QPoint)));
+
 
 
 }
@@ -250,32 +253,40 @@ void PositionsWindow::customMenuRequested(const QPoint &pos){
     QPointF* new_position  = new QPointF(position_old.x() - 120, position_old.y() - 25 );
 
     lastWorkstationClicked = workstations.pointIsContainedInWorkstationN(*new_position);
-    if (lastWorkstationClicked != -1){
-    QMenu *menu = new QMenu(this);
-    QAction* action = new QAction("Aggiungi prenotazione",this);
+    if (lastWorkstationClicked != -1 &&
+            workstations.isWorkstationOfThatColor(lastWorkstationClicked,*freeSpotColor)){
 
-    QObject::connect(action,SIGNAL(triggered(bool)),
+        QMenu *menu = new QMenu(this);
+        QAction* action = new QAction("Aggiungi prenotazione",this);
+
+        QObject::connect(action,SIGNAL(triggered(bool)),
                      this,SLOT(addReservation(bool)));
 
-    menu->addAction(action);
+        menu->addAction(action);
 
-
-    menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
+        menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
     }
 }
 
 void PositionsWindow::addReservation(bool){
-    AddReservation* addreservation = new AddReservation(lastWorkstationClicked);
+    emit addingReservation();
+    this->setDisabled(true);
+    AddReservation* addreservation = new AddReservation(lastWorkstationClicked,displayedDate);
     QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(User)),
                      this,SLOT(addReservationResult(User)));
+    QObject::connect(addreservation,SIGNAL(cancelOrOkButtonSignal()),
+                     this,SLOT(enableAgain()));
     addreservation->show();
+}
 
-
+void PositionsWindow::enableAgain(){
+    emit finishedAddingReservation();
+    this->setEnabled(true);
 }
 
 void PositionsWindow::addReservationResult(User user){
     list.addUser(user);
-    workstations.colorItems(list,displayedDate,*freeSpotColor,*notFreeSpotColor);
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     list.saveData("json");
 }
 
@@ -306,6 +317,7 @@ void PositionsWindow::mousePressEvent(QMouseEvent* event){
 
 void PositionsWindow::receiveNewDate(const QDate &date){
     displayedDate = date;
-    workstations.colorItems(list,date,*freeSpotColor,*notFreeSpotColor);
+    workstations.setCurrentDate(displayedDate);
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 

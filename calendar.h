@@ -27,6 +27,10 @@ signals:
 private slots:
     void on_calendarWidget_clicked(const QDate &date);
 
+    void disable();
+
+    void enable();
+
 private:
     Ui::Calendar *ui;
 

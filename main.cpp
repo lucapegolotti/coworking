@@ -16,6 +16,10 @@ int main(int argc, char *argv[])
     Calendar c;
     QObject::connect(&c,SIGNAL(sendChosenDate(const QDate&)),
                      &w,SLOT(receiveNewDate(const QDate&)));
+    QObject::connect(&w,SIGNAL(addingReservation()),
+                     &c,SLOT(disable()));
+    QObject::connect(&w,SIGNAL(finishedAddingReservation()),
+                     &c,SLOT(enable()));
     w.show();
     c.show();
 

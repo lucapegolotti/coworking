@@ -8,19 +8,30 @@
 #include <QBrush>
 #include <date.h>
 #include <QDate>
+#include <user.h>
 class Workstations{
  public:
 
+    Workstations(QDate date);
+
+    void setCurrentDate(QDate date);
+
     void addGraphicItem(QGraphicsRectItem* item);
 
-    void colorItems(UsersList& list, QDate date,
+    void colorItems(UsersList& list,
                     const QBrush availcolor, const QBrush notavailcolor);
 
     int pointIsContainedInWorkstationN(QPointF point);
 
+    bool isWorkstationOfThatColor(int number, QBrush color);
+
 
  private:
     std::vector<QGraphicsRectItem*> workstations;
+
+    User* currentOrNextUser[32];
+
+    QDate currentDate;
 
 };
 

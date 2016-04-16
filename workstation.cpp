@@ -1,11 +1,18 @@
 #include <workstations.h>
 #include <iostream>
 
+Workstations::Workstations(QDate date) :
+    currentDate(date){}
+
+void Workstations::setCurrentDate(QDate date){
+    currentDate = date;
+}
+
 void Workstations::addGraphicItem(QGraphicsRectItem *item){
     workstations.push_back(item);
 }
 
-void Workstations::colorItems(UsersList &list, QDate date,
+void Workstations::colorItems(UsersList &list,
                               const QBrush availcolor, const QBrush notavailcolor){
     QList<User>& userlist = list.getList();
 
@@ -19,7 +26,7 @@ void Workstations::colorItems(UsersList &list, QDate date,
         User cur_user = *iterator;
         QDate beginDate(cur_user.getBeginYear(),cur_user.getBeginMonth(),cur_user.getBeginDay());
         QDate endDate(cur_user.getEndYear(),cur_user.getEndMonth(),cur_user.getEndDay());
-        if ( date>= beginDate && date <= endDate){
+        if ( currentDate>= beginDate && currentDate <= endDate){
             workstations.at(cur_user.getWorkstation()-1)->setBrush(notavailcolor);
         }
     }
@@ -32,11 +39,13 @@ int Workstations::pointIsContainedInWorkstationN(QPointF point){
          iterator < workstations.end(); iterator++){
         i++;
         QGraphicsRectItem* rect = *iterator;
-        std::cout << rect->pos().rx()  <<"," << rect->pos().ry()<< std::endl;
         if (rect->contains(point)){
             break;
         }
     }
-    std::cout << point.rx() << ","<< point.ry() << std::endl;
     return (i<workstations.size() ? i : -1);
+}
+
+bool Workstations::isWorkstationOfThatColor(int number, QBrush color){
+    return (workstations.at(number-1)->brush() == color);
 }

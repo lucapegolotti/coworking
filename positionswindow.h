@@ -36,6 +36,14 @@ public slots:
 
     void addReservationResult(User user);
 
+    void enableAgain();
+
+signals:
+
+    void addingReservation();
+
+    void finishedAddingReservation();
+
 private:
     Ui::PositionsWindow *ui;
 
