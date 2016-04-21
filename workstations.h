@@ -31,6 +31,8 @@ class Workstations{
 
     User* userInPosition(int pos);
 
+    QDate freeUntil(int index);
+
 
  private:
     std::vector<QGraphicsRectItem*> workstations;

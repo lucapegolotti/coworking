@@ -108,7 +108,7 @@ int User::getBeginYear() const{
     return beginYear;
 }
 
-QDate User::getBeginDate() const{
+QDate &User::getBeginDate() const{
     QDate beginDate(beginYear,beginMonth,beginDay);
     return beginDate;
 }
@@ -125,7 +125,7 @@ int User::getEndYear() const{
     return endYear;
 }
 
-QDate User::getEndDate() const{
+QDate& User::getEndDate() const{
     QDate endDate(endYear,endMonth,endDay);
     return endDate;
 }

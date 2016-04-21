@@ -260,7 +260,8 @@ void PositionsWindow::customMenuRequested(const QPoint &pos){
         QObject::connect(addrsv,SIGNAL(triggered(bool)),
                      this,SLOT(addReservation(bool)));
 
-
+        if (displayedDate<QDate::currentDate())
+            addrsv->setDisabled(true);
         menu->addAction(addrsv);
 
         menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
@@ -283,7 +284,7 @@ void PositionsWindow::customMenuRequested(const QPoint &pos){
 void PositionsWindow::addReservation(bool){
     emit addingReservation();
     this->setDisabled(true);
-    AddReservation* addreservation = new AddReservation(lastWorkstationClicked,displayedDate);
+    AddReservation* addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked));
     QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(User)),
                      this,SLOT(addReservationResult(User)));
     QObject::connect(addreservation,SIGNAL(cancelOrOkButtonSignal()),

@@ -1,14 +1,22 @@
 #include "addreservation.h"
 #include "ui_addreservation.h"
 
-AddReservation::AddReservation(int workst_number,QDate beginDate, QWidget *parent) :
+AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximumEndDate, QWidget *parent) :
     QDialog(parent),
-    workstation_number(workst_number),
-    ui(new Ui::AddReservation)
+    ui(new Ui::AddReservation),
+    workstation_number(workst_number)
 {
     ui->setupUi(this);
     ui->beginDateEdit->setDate(beginDate);
     ui->endDateEdit->setDate(beginDate);
+    std::cout << "re1f" << std::endl;
+    QDate myBirthday(1992,5,11);
+    if (maximumEndDate != myBirthday){
+        std::cout << maximumEndDate.day() << std::endl;
+        ui->endDateEdit->setMaximumDate(maximumEndDate);
+        ui->endDateEdit->setDate(maximumEndDate);
+
+    }
 
     QObject::connect(ui->aggiungiButton,SIGNAL(clicked(bool)),
                      this,SLOT(buttonOkPressed()));

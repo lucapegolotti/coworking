@@ -120,3 +120,11 @@ User* Workstations::userInPosition(int pos){
 bool Workstations::isWorkstationOfThatColor(int number, QBrush color){
     return (workstations.at(number-1)->brush() == color);
 }
+
+QDate Workstations::freeUntil(int index){
+    if (currentOrNextUser[index-1] == NULL){
+        return {1992,11,5};
+    }
+    std::cout<< currentOrNextUser[index-1]->getBeginDate().day()<<std::endl;
+    return currentOrNextUser[index-1]->getBeginDate();
+}

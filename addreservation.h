@@ -15,7 +15,7 @@ class AddReservation : public QDialog
     Q_OBJECT
 
 public:
-    AddReservation(int workst_number,QDate beginDate,QWidget *parent = 0);
+    AddReservation(int workst_number,QDate beginDate,QDate maximumEndDate, QWidget *parent = 0);
     ~AddReservation();
 
 public slots:
