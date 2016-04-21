@@ -5,7 +5,7 @@ QList<User>& UsersList::getList(){
 }
 
 void UsersList::addUser(User user){
-    list.append(user);
+    list.push_front(user);
 }
 
 int UsersList::numberUsers(){
@@ -22,6 +22,16 @@ void UsersList::read(const QJsonObject& json){
         list.append(user);
     }
 }
+
+void UsersList::modifyUser(const User &old_user,const User& new_user){
+    list.removeOne(old_user);
+    list.push_front(new_user);
+}
+
+void UsersList::deleteUser(const User &user){
+    list.removeOne(user);
+}
+
 
 void UsersList::write(QJsonObject& json) const{
     QJsonArray us_array;

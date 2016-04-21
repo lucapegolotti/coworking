@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DetailsReservation</class>
+ <widget class="QDialog" name="DetailsReservation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="formLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>331</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout_3">
+    <item row="0" column="0">
+     <widget class="QLabel" name="nomeLabel_2">
+      <property name="text">
+       <string>Nome</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="nomeLineEdit_2"/>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="cognomeLabel_2">
+      <property name="text">
+       <string>Cognome</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="cognomeLineEdit_2"/>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="chiPagaLabel_2">
+      <property name="text">
+       <string>Chi paga</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="chiPagaLineEdit_2"/>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="tariffaLabel_2">
+      <property name="text">
+       <string>Tariffa</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QDoubleSpinBox" name="tariffaSpinBox_2">
+      <property name="maximum">
+       <double>10000.000000000000000</double>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="telefonoLabel_2">
+      <property name="text">
+       <string>Telefono</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QCheckBox" name="telefonoCheckBox_2"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="accesso24hLabel_2">
+      <property name="text">
+       <string>Accesso 24h</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QCheckBox" name="accesso24hCheckBox_2"/>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="chiaveLabel_2">
+      <property name="text">
+       <string>Chiave</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QCheckBox" name="chiaveCheckBox_2"/>
+    </item>
+    <item row="7" column="0">
+     <widget class="QLabel" name="ethernetLabel_2">
+      <property name="text">
+       <string>Ethernet</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QCheckBox" name="ethernetCheckBox_2"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="horizontalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>260</y>
+     <width>379</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="indietroButton">
+      <property name="text">
+       <string>Indietro</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="modificaButton">
+      <property name="text">
+       <string>Modifica</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="eliminaButton">
+      <property name="text">
+       <string>Elimina</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="okButton">
+      <property name="text">
+       <string>OK</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

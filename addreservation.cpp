@@ -10,14 +10,18 @@ AddReservation::AddReservation(int workst_number,QDate beginDate, QWidget *paren
     ui->beginDateEdit->setDate(beginDate);
     ui->endDateEdit->setDate(beginDate);
 
-    QObject::connect(ui->buttonBox,SIGNAL(accepted()),
+    QObject::connect(ui->aggiungiButton,SIGNAL(clicked(bool)),
                      this,SLOT(buttonOkPressed()));
-    QObject::connect(ui->buttonBox,SIGNAL(clicked(QAbstractButton*)),
+
+    QObject::connect(ui->aggiungiButton,SIGNAL(clicked(bool)),
                      this,SLOT(cancelOrOkButtonIsPressed()));
+    QObject::connect(ui->indietroButton,SIGNAL(clicked(bool)),
+                     this,SLOT(cancelOrOkButtonIsPressed()));
+
 
     this->setWindowFlags(Qt::CustomizeWindowHint|Qt::WindowTitleHint);
 
-    ui->buttonBox->buttons().at(0)->setDisabled(true);
+    ui->aggiungiButton->setDisabled(true);
 
     QObject::connect(ui->nomeLineEdit,SIGNAL(textChanged(QString)),
                      this,SLOT(nameChanged(QString)));
@@ -58,10 +62,10 @@ void AddReservation::dailyTariffChanged(double number){
 
 void AddReservation::unlocksOkButton(){
     if (tariffIsValid && nameIsValid && surnameIsValid && whopaysIsValid){
-        ui->buttonBox->buttons().at(0)->setEnabled(true);
+        ui->aggiungiButton->setEnabled(true);
     }
     else{
-        ui->buttonBox->buttons().at(0)->setDisabled(true);
+        ui->aggiungiButton->setDisabled(true);
     }
 }
 
@@ -85,5 +89,6 @@ void AddReservation::buttonOkPressed(){
 }
 
 void AddReservation::cancelOrOkButtonIsPressed(){
+    close();
     emit cancelOrOkButtonSignal();
 }

@@ -31,8 +31,6 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
 
     rect = new QGraphicsRectItem(mult*(20+xorigin),mult*0+multy,mult*25,mult*50);
 
-    rect->setToolTip("Postazione 1");
-
     scene->addItem(rect);
     workstations.addGraphicItem(rect);
 
@@ -257,12 +255,26 @@ void PositionsWindow::customMenuRequested(const QPoint &pos){
             workstations.isWorkstationOfThatColor(lastWorkstationClicked,*freeSpotColor)){
 
         QMenu *menu = new QMenu(this);
-        QAction* action = new QAction("Aggiungi prenotazione",this);
+        QAction* addrsv = new QAction("Aggiungi prenotazione",this);
 
-        QObject::connect(action,SIGNAL(triggered(bool)),
+        QObject::connect(addrsv,SIGNAL(triggered(bool)),
                      this,SLOT(addReservation(bool)));
 
-        menu->addAction(action);
+
+        menu->addAction(addrsv);
+
+        menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
+    }
+    if (lastWorkstationClicked != -1 &&
+            workstations.isWorkstationOfThatColor(lastWorkstationClicked,*notFreeSpotColor)){
+
+        QMenu *menu = new QMenu(this);
+        QAction* details = new QAction("Dettagli prenotazione",this);
+
+        QObject::connect(details,SIGNAL(triggered(bool)),
+                     this,SLOT(showDetails(bool)));
+
+        menu->addAction(details);
 
         menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
     }
@@ -277,6 +289,32 @@ void PositionsWindow::addReservation(bool){
     QObject::connect(addreservation,SIGNAL(cancelOrOkButtonSignal()),
                      this,SLOT(enableAgain()));
     addreservation->show();
+}
+
+void PositionsWindow::showDetails(bool){
+    emit addingReservation();
+    this->setDisabled(true);
+    DetailsReservation* details = new DetailsReservation(workstations.userInPosition(lastWorkstationClicked));
+    QObject::connect(details,SIGNAL(cancelOrOkButtonSignal()),
+                     this,SLOT(enableAgain()));
+    QObject::connect(details,SIGNAL(sendModifiedUserSignal(User*,User)),
+                     this,SLOT(modifyUser(User*,User)));
+    QObject::connect(details,SIGNAL(deleteUserSignal(User*)),
+                     this,SLOT(deleteUser(User*)));
+
+    details->show();
+}
+
+void PositionsWindow::modifyUser(User* old_user,User new_user){
+    list.modifyUser(*old_user,new_user);
+    list.saveData("json");
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+}
+
+void PositionsWindow::deleteUser(User *user){
+    list.deleteUser(*user);
+    list.saveData("json");
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
 void PositionsWindow::enableAgain(){

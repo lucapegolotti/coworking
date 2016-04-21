@@ -35,45 +35,47 @@ class User {
 
     void setEndDate(int day, int month, int year);
 
-    QString getName();
+    QString getName() const;
 
-    QString getSurname();
+    QString getSurname() const;
 
-    QString getWhoPays();
+    QString getWhoPays() const;
 
-    int getWorkstation();
+    int getWorkstation() const;
 
-    float getDailyTariff();
+    float getDailyTariff() const;
 
-    int getMeetingroomHourse();
+    int getMeetingroomHourse() const;
 
-    bool getAllDayAccess();
+    bool getAllDayAccess() const;
 
-    bool getDepositKey();
+    bool getDepositKey() const;
 
-    bool getEthernet();
+    bool getEthernet() const;
 
-    bool getTelephone();
+    bool getTelephone() const;
 
-    int getBeginDay();
+    int getBeginDay() const;
 
-    int getBeginMonth();
+    int getBeginMonth() const;
 
-    int getBeginYear();
+    int getBeginYear() const;
 
-    QDate getBeginDate();
+    QDate getBeginDate() const;
 
-    int getEndDay();
+    int getEndDay() const;
 
-    int getEndMonth();
+    int getEndMonth() const;
 
-    int getEndYear();
+    int getEndYear() const;
 
-    QDate getEndDate();
+    QDate getEndDate() const;
 
     void read(const QJsonObject& json);
 
     void write(QJsonObject& json) const;
+
+    bool operator==(const User& other) const;
 
 
 

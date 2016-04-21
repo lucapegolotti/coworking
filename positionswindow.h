@@ -12,6 +12,7 @@
 #include <date.h>
 #include <QDate>
 #include <addreservation.h>
+#include <detailsreservation.h>
 
 namespace Ui {
 class PositionsWindow;
@@ -36,13 +37,20 @@ public slots:
 
     void addReservationResult(User user);
 
+    void showDetails(bool);
+
     void enableAgain();
+
+    void modifyUser(User* old_user,User new_user);
+
+    void deleteUser(User* user);
 
 signals:
 
     void addingReservation();
 
     void finishedAddingReservation();
+
 
 private:
     Ui::PositionsWindow *ui;

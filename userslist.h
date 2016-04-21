@@ -13,6 +13,10 @@ class UsersList {
 
     void addUser(User user);
 
+    void modifyUser(const User& old_user,const User &new_user);
+
+    void deleteUser(const User& user);
+
     int numberUsers();
 
     void read(const QJsonObject& json);

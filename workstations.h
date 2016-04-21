@@ -29,6 +29,8 @@ class Workstations{
 
     void setToolTips(UsersList &list);
 
+    User* userInPosition(int pos);
+
 
  private:
     std::vector<QGraphicsRectItem*> workstations;

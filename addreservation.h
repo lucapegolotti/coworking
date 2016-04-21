@@ -20,6 +20,7 @@ public:
 
 public slots:
     void buttonOkPressed();
+
     void cancelOrOkButtonIsPressed();
 
     void nameChanged(QString string);

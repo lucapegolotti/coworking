@@ -56,76 +56,76 @@ void User::setEndDate(int day, int month, int year){
     endYear = year;
 }
 
-QString User::getName(){
+QString User::getName() const{
     return name;
 }
 
-QString User::getSurname(){
+QString User::getSurname() const{
     return surname;
 }
 
-QString User::getWhoPays(){
+QString User::getWhoPays() const{
     return whoPays;
 }
 
-int User::getWorkstation(){
+int User::getWorkstation() const{
     return workstation;
 }
 
-float User::getDailyTariff(){
+float User::getDailyTariff() const{
     return dailyTariff;
 }
 
-int User::getMeetingroomHourse(){
+int User::getMeetingroomHourse() const{
     return meetingroomHoursLeft;
 }
 
-bool User::getAllDayAccess(){
+bool User::getAllDayAccess() const{
     return allDayAccess;
 }
 
-bool User::getDepositKey(){
+bool User::getDepositKey() const{
     return depositKey;
 }
 
-bool User::getEthernet(){
+bool User::getEthernet() const{
     return ethernet;
 }
 
-bool User::getTelephone(){
+bool User::getTelephone() const{
     return telephone;
 }
 
-int User::getBeginDay(){
+int User::getBeginDay() const{
     return beginDay;
 }
 
-int User::getBeginMonth(){
+int User::getBeginMonth() const{
     return beginMonth;
 }
 
-int User::getBeginYear(){
+int User::getBeginYear() const{
     return beginYear;
 }
 
-QDate User::getBeginDate(){
+QDate User::getBeginDate() const{
     QDate beginDate(beginYear,beginMonth,beginDay);
     return beginDate;
 }
 
-int User::getEndDay(){
+int User::getEndDay() const{
     return endDay;
 }
 
-int User::getEndMonth(){
+int User::getEndMonth() const{
     return endMonth;
 }
 
-int User::getEndYear(){
+int User::getEndYear() const{
     return endYear;
 }
 
-QDate User::getEndDate(){
+QDate User::getEndDate() const{
     QDate endDate(endYear,endMonth,endDay);
     return endDate;
 }
@@ -166,4 +166,24 @@ void User::write(QJsonObject &json) const{
     json["endday"] = endDay;
     json["endmonth"] = endMonth;
     json["endyear"] = endYear;
+}
+
+bool User::operator==(const User& other) const{
+    return (name == other.getName() &&
+            surname == other.getSurname() &&
+            whoPays == other.getWhoPays() &&
+            workstation == other.getWorkstation() &&
+            dailyTariff == other.getDailyTariff() &&
+            meetingroomHoursLeft == other.getMeetingroomHourse() &&
+            allDayAccess == other.getAllDayAccess() &&
+            depositKey == other.getDepositKey() &&
+            ethernet == other.getEthernet() &&
+            telephone == other.getTelephone() &&
+            beginDay == other.getBeginDay() &&
+            beginMonth == other.getBeginMonth() &&
+            beginYear == other.getBeginYear() &&
+            endDay == other.getEndDay() &&
+            endMonth == other.getEndMonth() &&
+            endYear == other.getEndYear());
+
 }

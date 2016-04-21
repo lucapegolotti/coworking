@@ -100,15 +100,21 @@ void Workstations::colorItems(UsersList &list,
 
 int Workstations::pointIsContainedInWorkstationN(QPointF point){
     int i = 0;
+    bool aux = false;
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
          iterator < workstations.end(); iterator++){
         i++;
         QGraphicsRectItem* rect = *iterator;
         if (rect->contains(point)){
+            aux = true;
             break;
         }
     }
-    return (i<workstations.size() ? i : -1);
+    return (aux ? i : -1);
+}
+
+User* Workstations::userInPosition(int pos){
+    return currentOrNextUser[pos-1];
 }
 
 bool Workstations::isWorkstationOfThatColor(int number, QBrush color){
