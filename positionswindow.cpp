@@ -6,7 +6,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     ui(new Ui::PositionsWindow),
     workstations(QDate::currentDate()),
     freeSpotColor(new QColor(114,233,200)),
-    notFreeSpotColor(new QColor(253,152,152)){
+    notFreeSpotColor(new QColor(253,152,152)),
+    availableInPeriodColor(new QColor(190,190,255)){
 
     list.loadData("json");
 
@@ -235,6 +236,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
                 this,SLOT(customMenuRequested(QPoint)));
 
 
+    QObject::connect(ui->actionControlla_disponibilit,SIGNAL(triggered(bool)),
+                     this,SLOT(openCheckAvailability()));
 
 }
 
@@ -243,6 +246,7 @@ PositionsWindow::~PositionsWindow(){
     delete ui;
     delete freeSpotColor;
     delete notFreeSpotColor;
+    delete availableInPeriodColor;
 }
 
 void PositionsWindow::customMenuRequested(const QPoint &pos){
@@ -329,34 +333,34 @@ void PositionsWindow::addReservationResult(User user){
     list.saveData("json");
 }
 
-void PositionsWindow::mousePressEvent(QMouseEvent* event){
-    /*if (event->button() == Qt::RightButton){
-        this->setContextMenuPolicy(Qt::CustomContextMenu);
-
-    }*/
-
-  /*  QPointF position_old = event->localPos();
-    QPointF* new_position  = new QPointF(position_old.x() - 150, position_old.y() - 75 );
-
-    for (std::vector<QGraphicsRectItem*>::iterator it = workstations.begin(); it < workstations.end(); it++){
-        if ((*it)->contains(*new_position)){
-            if ((*it)->brush() == (*freeSpotColor)){
-                (*it)->setBrush(*notFreeSpotColor);
-            }
-            else{
-                (*it)->setBrush(*freeSpotColor);
-            }
-
-            break;
-        }
-    }
-    delete new_position;*/
-}
-
 
 void PositionsWindow::receiveNewDate(const QDate &date){
     displayedDate = date;
     workstations.setCurrentDate(displayedDate);
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+}
+
+void PositionsWindow::openCheckAvailability(){
+    CheckAvailability* check = new CheckAvailability(displayedDate);
+    check->show();
+
+    QObject::connect(check,SIGNAL(beginDateChangedSignal(QDate)),
+                     this,SLOT(receiveNewBeginDateAvailability(QDate)));
+    QObject::connect(check,SIGNAL(endDateChangedSignal(QDate)),
+                     this,SLOT(receiveNewEndDateAvailability(QDate)));
+}
+
+void PositionsWindow::receiveNewEndDateAvailability(QDate date){
+    endDateAvailability = date;
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
+                                            *availableInPeriodColor,endDateAvailability);
+}
+
+void PositionsWindow::receiveNewBeginDateAvailability(QDate date){
+    displayedDate = date;
+    workstations.setCurrentDate(displayedDate);
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
+                                            *availableInPeriodColor,endDateAvailability);
+
 }
 

@@ -98,6 +98,34 @@ void Workstations::colorItems(UsersList &list,
 
 }
 
+void Workstations::colorItemsWithAvailability(UsersList& list,
+                                const QBrush availcolor, const QBrush notavailcolor, const QBrush availperiodcolor,
+                                QDate end_date){
+    QList<User>& userlist = list.getList();
+    updateCurrentOrNextUser(list);
+    int i = 0;
+    for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
+         iterator < workstations.end(); iterator++){
+        (*iterator)->setBrush(availcolor);
+        if (currentOrNextUser[i] == NULL){
+            (*iterator)->setBrush(availperiodcolor);
+        } else if (end_date<currentOrNextUser[i]->getBeginDate()){
+            (*iterator)->setBrush(availperiodcolor);
+        }
+        i++;
+    }
+
+    for (QList<User>::Iterator iterator = userlist.begin();
+         iterator < userlist.end(); iterator++){
+        User cur_user = *iterator;
+        QDate beginDate(cur_user.getBeginYear(),cur_user.getBeginMonth(),cur_user.getBeginDay());
+        QDate endDate(cur_user.getEndYear(),cur_user.getEndMonth(),cur_user.getEndDay());
+        if ( currentDate>= beginDate && currentDate <= endDate){
+            workstations.at(cur_user.getWorkstation()-1)->setBrush(notavailcolor);
+        }
+    }
+}
+
 int Workstations::pointIsContainedInWorkstationN(QPointF point){
     int i = 0;
     bool aux = false;

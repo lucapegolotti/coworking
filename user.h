@@ -61,7 +61,7 @@ class User {
 
     int getBeginYear() const;
 
-    QDate& getBeginDate() const;
+    QDate getBeginDate() const;
 
     int getEndDay() const;
 
@@ -69,7 +69,7 @@ class User {
 
     int getEndYear() const;
 
-    QDate &getEndDate() const;
+    QDate getEndDate() const;
 
     void read(const QJsonObject& json);
 

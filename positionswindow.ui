@@ -470,10 +470,22 @@
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuStrumenti">
+    <property name="title">
+     <string>Strumenti</string>
+    </property>
+    <addaction name="actionControlla_disponibilit"/>
+   </widget>
+   <addaction name="menuStrumenti"/>
   </widget>
   <action name="actionBla">
    <property name="text">
     <string>Bla</string>
+   </property>
+  </action>
+  <action name="actionControlla_disponibilit">
+   <property name="text">
+    <string>Controlla disponibilità</string>
    </property>
   </action>
  </widget>

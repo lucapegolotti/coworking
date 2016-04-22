@@ -27,6 +27,7 @@ public slots:
     void surnameChanged(QString string);
     void whopaysChanged(QString string);
     void dailyTariffChanged(double number);
+    void beginDateChanged(QDate date);
 
 signals:
     void sendReservationToMainWindow(User user);

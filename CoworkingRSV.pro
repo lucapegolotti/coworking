@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     date.cpp \
     calendar.cpp \
     addreservation.cpp \
-    detailsreservation.cpp
+    detailsreservation.cpp \
+    checkavailability.cpp
 
 HEADERS  += positionswindow.h \
     user.h \
@@ -29,9 +30,11 @@ HEADERS  += positionswindow.h \
     date.h \
     calendar.h \
     addreservation.h \
-    detailsreservation.h
+    detailsreservation.h \
+    checkavailability.h
 
 FORMS    += positionswindow.ui \
     calendar.ui \
     addreservation.ui \
-    detailsreservation.ui
+    detailsreservation.ui \
+    checkavailability.ui

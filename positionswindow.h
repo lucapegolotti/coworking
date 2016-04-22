@@ -13,6 +13,7 @@
 #include <QDate>
 #include <addreservation.h>
 #include <detailsreservation.h>
+#include <checkavailability.h>
 
 namespace Ui {
 class PositionsWindow;
@@ -25,8 +26,6 @@ public:
     explicit PositionsWindow(QWidget *parent = 0);
 
     ~PositionsWindow();
-
-    void mousePressEvent(QMouseEvent* event);
 
 public slots:
     void receiveNewDate(const QDate& date);
@@ -44,6 +43,14 @@ public slots:
     void modifyUser(User* old_user,User new_user);
 
     void deleteUser(User* user);
+
+    void openCheckAvailability();
+
+    void receiveNewBeginDateAvailability(QDate date);
+
+    void receiveNewEndDateAvailability(QDate date);
+
+
 
 signals:
 
@@ -63,9 +70,13 @@ private:
 
     QDate displayedDate;
 
+    QDate endDateAvailability;
+
     QColor* freeSpotColor;
 
     QColor* notFreeSpotColor;
+
+    QColor* availableInPeriodColor;
 
     void setTime(Date date);
 

@@ -10,7 +10,7 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
     ui->beginDateEdit->setDate(beginDate);
     ui->endDateEdit->setDate(beginDate);
     std::cout << "re1f" << std::endl;
-    QDate myBirthday(1992,5,11);
+    QDate myBirthday(1992,11,5);
     if (maximumEndDate != myBirthday){
         std::cout << maximumEndDate.day() << std::endl;
         ui->endDateEdit->setMaximumDate(maximumEndDate);
@@ -39,6 +39,8 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
                      this,SLOT(whopaysChanged(QString)));
     QObject::connect(ui->tariffaSpinBox,SIGNAL(valueChanged(double)),
                      this,SLOT(dailyTariffChanged(double)));
+    QObject::connect(ui->beginDateEdit,SIGNAL(dateChanged(QDate)),
+                     this,SLOT(beginDateChanged(QDate)));
 
 
 }
@@ -99,4 +101,10 @@ void AddReservation::buttonOkPressed(){
 void AddReservation::cancelOrOkButtonIsPressed(){
     close();
     emit cancelOrOkButtonSignal();
+}
+
+void AddReservation::beginDateChanged(QDate date){
+    if (date>=ui->endDateEdit->date())
+        ui->endDateEdit->setDate(date);
+    ui->endDateEdit->setMinimumDate(date);
 }
