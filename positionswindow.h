@@ -26,6 +26,8 @@ class PositionsWindow : public QMainWindow {
 public:
     explicit PositionsWindow(QWidget *parent = 0);
 
+    void changeCurrentDate(QDate date);
+
     ~PositionsWindow();
 
 public slots:
@@ -63,6 +65,11 @@ signals:
 
     void finishedAddingReservation();
 
+
+private slots:
+    void on_previousButton_clicked();
+
+    void on_followingButton_clicked();
 
 private:
     Ui::PositionsWindow *ui;

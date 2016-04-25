@@ -2,6 +2,26 @@
 
 User::User() {}
 
+User::User(QString name, QString surname, QString whopays, int workstation,
+           float tariff, int hourLeft, bool alldayacc, bool deposit,
+           bool ethernet, bool telephone, QDate beginDate, QDate endDate) :
+    name(name),
+    surname(surname),
+    whoPays(whopays),
+    workstation(workstation),
+    dailyTariff(tariff),
+    meetingroomHoursLeft(hourLeft),
+    allDayAccess(alldayacc),
+    depositKey(deposit),
+    ethernet(ethernet),
+    telephone(telephone),
+    beginDay(beginDate.day()),
+    beginMonth(beginDate.month()),
+    beginYear(beginDate.year()),
+    endDay(endDate.day()),
+    endMonth(endDate.month()),
+    endYear(endDate.year()){}
+
 void User::setName(QString name){
     this->name = name;
 }

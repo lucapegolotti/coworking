@@ -11,6 +11,10 @@ class User {
 
     User();
 
+    User(QString name, QString surname, QString whopays, int workstation,
+         float tariff, int hourLeft, bool alldayacc, bool deposit,
+         bool ethernet, bool telephone, QDate beginDate, QDate endDate);
+
     void setName(QString name);
 
     void setSurname(QString surname);

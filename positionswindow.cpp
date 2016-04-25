@@ -228,7 +228,7 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     scene->addItem(line);
 
 
-    displayedDate = QDate::currentDate();
+    changeCurrentDate(QDate::currentDate());
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     positionsView->setScene(scene);
 
@@ -353,15 +353,16 @@ void PositionsWindow::enableAgain(){
 
 void PositionsWindow::addReservationResult(User user){
     list.addUser(user);
-    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+    if (!checkAvailOpen)
+        workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+    else
+        workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
     list.saveData("json");
 }
 
 
 void PositionsWindow::receiveNewDate(const QDate &date){
-    displayedDate = date;
-    workstations.setCurrentDate(displayedDate);
-    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+    changeCurrentDate(date);
 }
 
 void PositionsWindow::openCheckAvailability(){
@@ -375,6 +376,9 @@ void PositionsWindow::openCheckAvailability(){
                      this,SLOT(receiveNewEndDateAvailability(QDate)));
     QObject::connect(check,SIGNAL(closeIsPressedSignal()),
                      this,SLOT(checkAvailabilityIsClosed()));
+    endDateAvailability = displayedDate;
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
+
 }
 
 void PositionsWindow::checkAvailabilityIsClosed(){
@@ -390,10 +394,100 @@ void PositionsWindow::receiveNewEndDateAvailability(QDate date){
 }
 
 void PositionsWindow::receiveNewBeginDateAvailability(QDate date){
-    displayedDate = date;
-    workstations.setCurrentDate(displayedDate);
+    changeCurrentDate(date);
     workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
                                             *notAvailableInPeriodColor,endDateAvailability);
 
 }
 
+void PositionsWindow::changeCurrentDate(QDate date){
+    displayedDate = date;
+    workstations.setCurrentDate(displayedDate);
+    int day = date.day();
+    int weekday = date.dayOfWeek();
+    QString weekday_string;
+    switch (weekday){
+        case 1:
+        weekday_string = "Lunedì";
+        break;
+        case 2:
+        weekday_string = "Martedì";
+        break;
+        case 3:
+        weekday_string = "Mercoledì";
+        break;
+        case 4:
+        weekday_string = "Giovedì";
+        break;
+        case 5:
+        weekday_string = "Venerdì";
+        break;
+        case 6:
+        weekday_string = "Sabato";
+        break;
+        case 7:
+        weekday_string = "Domenica";
+        break;
+
+    }
+
+    int month = date.month();
+    QString month_string;
+    switch (month) {
+        case 1:
+        month_string = "Gennaio";
+        break;
+        case 2:
+        month_string = "Febbraio";
+        break;
+        case 3:
+        month_string = "Marzo";
+        break;
+        case 4:
+        month_string = "Aprile";
+        break;
+        case 5:
+        month_string = "Maggio";
+        break;
+        case 6:
+        month_string = "Giugno";
+        break;
+        case 7:
+        month_string = "Luglio";
+        break;
+        case 8:
+        month_string = "Agosto";
+        break;
+        case 9:
+        month_string = "Settembre";
+        break;
+        case 10:
+        month_string = "Ottobre";
+        break;
+        case 11:
+        month_string = "Novembre";
+        break;
+        case 12:
+        month_string = "Dicembre";
+        break;
+
+    }
+    QString string_date = "<html><head/><body><p><span style=' font-size:24pt; color:#8ea8f1;'>";
+            string_date.append(weekday_string).
+            append(" ").append(QString::number(day)).
+            append(" ").append(month_string).
+            append(" ").append(QString::number(displayedDate.year())).append("</span></p></body></html>");
+    ui->dataLabel->setText(string_date);
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
+}
+
+
+void PositionsWindow::on_previousButton_clicked()
+{
+    changeCurrentDate(displayedDate.addDays(-1));
+}
+
+void PositionsWindow::on_followingButton_clicked()
+{
+    changeCurrentDate(displayedDate.addDays(1));
+}

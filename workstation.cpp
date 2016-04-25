@@ -2,7 +2,11 @@
 #include <iostream>
 
 Workstations::Workstations(QDate date) :
-    currentDate(date){}
+    currentDate(date){
+    for (int i = 0; i < 32; i++){
+        currentOrNextUser[i] = NULL;
+    }
+}
 
 void Workstations::setCurrentDate(QDate date){
     currentDate = date;
@@ -14,6 +18,8 @@ void Workstations::addGraphicItem(QGraphicsRectItem *item){
 
 void Workstations::updateCurrentOrNextUser(UsersList &list){
     for (int i = 0; i < 32; i++){
+        if (currentOrNextUser[i] != NULL)
+            delete currentOrNextUser[i];
         currentOrNextUser[i] = NULL;
     }
     for (QList<User>::Iterator iterator = list.getList().begin();
@@ -24,12 +30,12 @@ void Workstations::updateCurrentOrNextUser(UsersList &list){
         int targetWorkstation = cur_user.getWorkstation()-1;
         if (currentOrNextUser[targetWorkstation] == NULL && (beginDate > currentDate || (beginDate<=currentDate &&
                                                                       endDate>=currentDate))){
-            currentOrNextUser[targetWorkstation] = &(*iterator);
+            currentOrNextUser[targetWorkstation] = new User(cur_user);
         }
         else if (currentOrNextUser[targetWorkstation] != NULL){
             User cur_user2 = *currentOrNextUser[targetWorkstation];
             if (beginDate>currentDate && cur_user2.getBeginDate()>beginDate){
-                currentOrNextUser[targetWorkstation] = &(*iterator);
+                currentOrNextUser[targetWorkstation] = new User(cur_user);
             }
         }
 
@@ -113,16 +119,6 @@ void Workstations::colorItemsWithAvailability(UsersList& list,
             (*iterator)->setBrush(availcolor);
         }
         i++;
-    }
-
-    for (QList<User>::Iterator iterator = userlist.begin();
-         iterator < userlist.end(); iterator++){
-        User cur_user = *iterator;
-        QDate beginDate(cur_user.getBeginYear(),cur_user.getBeginMonth(),cur_user.getBeginDay());
-        QDate endDate(cur_user.getEndYear(),cur_user.getEndMonth(),cur_user.getEndDay());
-        if ( currentDate>= beginDate && currentDate <= endDate){
-            workstations.at(cur_user.getWorkstation()-1)->setBrush(notavailcolor);
-        }
     }
 }
 
