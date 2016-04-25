@@ -7,7 +7,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     workstations(QDate::currentDate()),
     freeSpotColor(new QColor(114,233,200)),
     notFreeSpotColor(new QColor(253,152,152)),
-    availableInPeriodColor(new QColor(190,190,255)){
+    notAvailableInPeriodColor(new QColor(190,190,255)),
+    checkAvailOpen(false){
 
     list.loadData("json");
 
@@ -239,6 +240,9 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     QObject::connect(ui->actionControlla_disponibilit,SIGNAL(triggered(bool)),
                      this,SLOT(openCheckAvailability()));
 
+    QObject::connect(ui->actionApri_Calendario,SIGNAL(triggered(bool)),
+                     this,SLOT(openCalendar()));
+
 }
 
 PositionsWindow::~PositionsWindow(){
@@ -246,7 +250,21 @@ PositionsWindow::~PositionsWindow(){
     delete ui;
     delete freeSpotColor;
     delete notFreeSpotColor;
-    delete availableInPeriodColor;
+    delete notAvailableInPeriodColor;
+}
+
+void PositionsWindow::openCalendar(){
+    Calendar* c = new Calendar(displayedDate);
+
+    QObject::connect(c,SIGNAL(sendChosenDate(const QDate&)),
+                     this,SLOT(receiveNewDate(const QDate&)));
+    QObject::connect(this,SIGNAL(addingReservation()),
+                     c,SLOT(disable()));
+    QObject::connect(this,SIGNAL(finishedAddingReservation()),
+                     c,SLOT(enable()));
+    QObject::connect(this,SIGNAL(destroyed(QObject*)),
+                     c,SLOT(close()));
+    c->show();
 }
 
 void PositionsWindow::customMenuRequested(const QPoint &pos){
@@ -283,12 +301,18 @@ void PositionsWindow::customMenuRequested(const QPoint &pos){
 
         menu->popup(ui->positionsView->viewport()->mapToGlobal(pos));
     }
+
 }
 
 void PositionsWindow::addReservation(bool){
     emit addingReservation();
     this->setDisabled(true);
-    AddReservation* addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked));
+
+    AddReservation* addreservation;
+    if (checkAvailOpen)
+        addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked),endDateAvailability);
+    else
+        addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked));
     QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(User)),
                      this,SLOT(addReservationResult(User)));
     QObject::connect(addreservation,SIGNAL(cancelOrOkButtonSignal()),
@@ -341,6 +365,7 @@ void PositionsWindow::receiveNewDate(const QDate &date){
 }
 
 void PositionsWindow::openCheckAvailability(){
+    checkAvailOpen = true;
     CheckAvailability* check = new CheckAvailability(displayedDate);
     check->show();
 
@@ -348,19 +373,27 @@ void PositionsWindow::openCheckAvailability(){
                      this,SLOT(receiveNewBeginDateAvailability(QDate)));
     QObject::connect(check,SIGNAL(endDateChangedSignal(QDate)),
                      this,SLOT(receiveNewEndDateAvailability(QDate)));
+    QObject::connect(check,SIGNAL(closeIsPressedSignal()),
+                     this,SLOT(checkAvailabilityIsClosed()));
+}
+
+void PositionsWindow::checkAvailabilityIsClosed(){
+    checkAvailOpen = false;
+    workstations.setCurrentDate(displayedDate);
+    workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
 void PositionsWindow::receiveNewEndDateAvailability(QDate date){
     endDateAvailability = date;
     workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
-                                            *availableInPeriodColor,endDateAvailability);
+                                            *notAvailableInPeriodColor,endDateAvailability);
 }
 
 void PositionsWindow::receiveNewBeginDateAvailability(QDate date){
     displayedDate = date;
     workstations.setCurrentDate(displayedDate);
     workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
-                                            *availableInPeriodColor,endDateAvailability);
+                                            *notAvailableInPeriodColor,endDateAvailability);
 
 }
 

@@ -18,6 +18,9 @@ class Calendar : public QWidget
 
 public:
     explicit Calendar(QWidget *parent = 0);
+
+    Calendar(QDate cur_date,QWidget * parent = 0);
+
     ~Calendar();
 
 

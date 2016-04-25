@@ -6,11 +6,15 @@ CheckAvailability::CheckAvailability(QDate current_date,QWidget *parent) :
     ui(new Ui::CheckAvailability)
 {
     ui->setupUi(this);
+    this->setWindowFlags(Qt::CustomizeWindowHint|Qt::WindowTitleHint);
+
     ui->beginDateEdit->setDate(current_date);
     ui->endDateEdit->setDate(current_date);
-    ui->beginDateEdit->setMinimumDate(current_date);
-    ui->endDateEdit->setMinimumDate(current_date);
+    ui->beginDateEdit->setMinimumDate(QDate::currentDate());
+    ui->endDateEdit->setMinimumDate(QDate::currentDate());
 
+    QObject::connect(ui->indietroButton,SIGNAL(clicked(bool)),
+                     this,SLOT(closedIsPressed()));
 }
 
 CheckAvailability::~CheckAvailability()
@@ -18,6 +22,10 @@ CheckAvailability::~CheckAvailability()
     delete ui;
 }
 
+void CheckAvailability::closedIsPressed(){
+    emit closeIsPressedSignal();
+    close();
+}
 
 void CheckAvailability::on_beginDateEdit_dateChanged(const QDate &date)
 {

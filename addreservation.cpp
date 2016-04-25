@@ -45,6 +45,52 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
 
 }
 
+
+
+AddReservation::AddReservation(int workst_number,QDate beginDate,QDate maximumEndDate,QDate hintenddate, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::AddReservation),
+    workstation_number(workst_number)
+{
+ui->setupUi(this);
+ui->beginDateEdit->setDate(beginDate);
+ui->endDateEdit->setDate(hintenddate);
+std::cout << "re1f" << std::endl;
+QDate myBirthday(1992,11,5);
+if (maximumEndDate != myBirthday){
+    std::cout << maximumEndDate.day() << std::endl;
+    ui->endDateEdit->setMaximumDate(maximumEndDate);
+    ui->endDateEdit->setDate(hintenddate);
+
+}
+
+QObject::connect(ui->aggiungiButton,SIGNAL(clicked(bool)),
+                 this,SLOT(buttonOkPressed()));
+
+QObject::connect(ui->aggiungiButton,SIGNAL(clicked(bool)),
+                 this,SLOT(cancelOrOkButtonIsPressed()));
+QObject::connect(ui->indietroButton,SIGNAL(clicked(bool)),
+                 this,SLOT(cancelOrOkButtonIsPressed()));
+
+
+this->setWindowFlags(Qt::CustomizeWindowHint|Qt::WindowTitleHint);
+
+ui->aggiungiButton->setDisabled(true);
+
+QObject::connect(ui->nomeLineEdit,SIGNAL(textChanged(QString)),
+                 this,SLOT(nameChanged(QString)));
+QObject::connect(ui->cognomeLineEdit,SIGNAL(textChanged(QString)),
+                 this,SLOT(surnameChanged(QString)));
+QObject::connect(ui->chiPagaLineEdit,SIGNAL(textChanged(QString)),
+                 this,SLOT(whopaysChanged(QString)));
+QObject::connect(ui->tariffaSpinBox,SIGNAL(valueChanged(double)),
+                 this,SLOT(dailyTariffChanged(double)));
+QObject::connect(ui->beginDateEdit,SIGNAL(dateChanged(QDate)),
+                 this,SLOT(beginDateChanged(QDate)));
+
+
+}
+
 AddReservation::~AddReservation()
 {
     delete ui;

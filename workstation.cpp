@@ -99,18 +99,18 @@ void Workstations::colorItems(UsersList &list,
 }
 
 void Workstations::colorItemsWithAvailability(UsersList& list,
-                                const QBrush availcolor, const QBrush notavailcolor, const QBrush availperiodcolor,
+                                const QBrush availcolor, const QBrush notavailcolor, const QBrush notavailperiodcolor,
                                 QDate end_date){
     QList<User>& userlist = list.getList();
     updateCurrentOrNextUser(list);
     int i = 0;
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
          iterator < workstations.end(); iterator++){
-        (*iterator)->setBrush(availcolor);
+        (*iterator)->setBrush(notavailperiodcolor);
         if (currentOrNextUser[i] == NULL){
-            (*iterator)->setBrush(availperiodcolor);
+            (*iterator)->setBrush(availcolor);
         } else if (end_date<currentOrNextUser[i]->getBeginDate()){
-            (*iterator)->setBrush(availperiodcolor);
+            (*iterator)->setBrush(availcolor);
         }
         i++;
     }

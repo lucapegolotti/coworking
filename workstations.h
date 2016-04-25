@@ -22,7 +22,7 @@ class Workstations{
                     const QBrush availcolor, const QBrush notavailcolor);
 
     void colorItemsWithAvailability(UsersList& list,
-                                    const QBrush availcolor, const QBrush notavailcolor, const QBrush availperiodcolor,
+                                    const QBrush availcolor, const QBrush notavailcolor, const QBrush notavailperiodcolor,
                                     QDate end_date);
 
     int pointIsContainedInWorkstationN(QPointF point);

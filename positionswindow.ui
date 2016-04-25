@@ -476,7 +476,14 @@
     </property>
     <addaction name="actionControlla_disponibilit"/>
    </widget>
+   <widget class="QMenu" name="menuVista">
+    <property name="title">
+     <string>Vista</string>
+    </property>
+    <addaction name="actionApri_Calendario"/>
+   </widget>
    <addaction name="menuStrumenti"/>
+   <addaction name="menuVista"/>
   </widget>
   <action name="actionBla">
    <property name="text">
@@ -486,6 +493,11 @@
   <action name="actionControlla_disponibilit">
    <property name="text">
     <string>Controlla disponibilità</string>
+   </property>
+  </action>
+  <action name="actionApri_Calendario">
+   <property name="text">
+    <string>Apri Calendario</string>
    </property>
   </action>
  </widget>

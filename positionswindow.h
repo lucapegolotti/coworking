@@ -14,6 +14,7 @@
 #include <addreservation.h>
 #include <detailsreservation.h>
 #include <checkavailability.h>
+#include <calendar.h>
 
 namespace Ui {
 class PositionsWindow;
@@ -50,6 +51,10 @@ public slots:
 
     void receiveNewEndDateAvailability(QDate date);
 
+    void openCalendar();
+
+    void checkAvailabilityIsClosed();
+
 
 
 signals:
@@ -76,9 +81,11 @@ private:
 
     QColor* notFreeSpotColor;
 
-    QColor* availableInPeriodColor;
+    QColor* notAvailableInPeriodColor;
 
     void setTime(Date date);
+
+    bool checkAvailOpen;
 
 };
 

@@ -7,6 +7,13 @@ Calendar::Calendar(QWidget *parent) :
     ui->setupUi(this);
 }
 
+Calendar::Calendar(QDate cur_date,QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Calendar){
+    ui->setupUi(this);
+    ui->calendarWidget->setSelectedDate(cur_date);
+}
+
 Calendar::~Calendar(){
     delete ui;
 }
