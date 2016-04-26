@@ -14,24 +14,24 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         positionswindow.cpp \
-    user.cpp \
-    userslist.cpp \
     workstation.cpp \
     date.cpp \
     calendar.cpp \
     addreservation.cpp \
     detailsreservation.cpp \
-    checkavailability.cpp
+    checkavailability.cpp \
+    reservation.cpp \
+    reservationslist.cpp
 
 HEADERS  += positionswindow.h \
-    user.h \
-    userslist.h \
     workstations.h \
     date.h \
     calendar.h \
     addreservation.h \
     detailsreservation.h \
-    checkavailability.h
+    checkavailability.h \
+    reservation.h \
+    reservationslist.h
 
 FORMS    += positionswindow.ui \
     calendar.ui \

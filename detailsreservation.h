@@ -2,7 +2,7 @@
 #define DETAILSRESERVATION_H
 
 #include <QDialog>
-#include <user.h>
+#include <reservation.h>
 
 namespace Ui {
 class DetailsReservation;
@@ -13,7 +13,7 @@ class DetailsReservation : public QDialog
     Q_OBJECT
 
 public:
-    DetailsReservation(User* user,QWidget *parent = 0);
+    DetailsReservation(Reservation* user,QWidget *parent = 0);
     ~DetailsReservation();
 
 public slots:
@@ -28,13 +28,13 @@ public slots:
 signals:
     void cancelOrOkButtonSignal();
 
-    void sendModifiedUserSignal(User* old_user, User newuser);
+    void sendModifiedUserSignal(Reservation* old_user, Reservation newuser);
 
-    void deleteUserSignal(User* user);
+    void deleteUserSignal(Reservation* user);
 
 private:
     Ui::DetailsReservation *ui;
-    User* user_det;
+    Reservation* user_det;
 };
 
 #endif // DETAILSRESERVATION_H

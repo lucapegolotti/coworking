@@ -1,7 +1,7 @@
 #include "detailsreservation.h"
 #include "ui_detailsreservation.h"
 
-DetailsReservation::DetailsReservation(User* user,QWidget *parent) :
+DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     user_det(user),
     QDialog(parent),
     ui(new Ui::DetailsReservation)
@@ -64,7 +64,7 @@ void DetailsReservation::cancelOrOkButtonIsPressed(){
 }
 
 void DetailsReservation::sendModifiedUser(){
-    User newuser;
+    Reservation newuser;
     newuser.setName(ui->nomeLineEdit_2->text());
     newuser.setSurname(ui->cognomeLineEdit_2->text());
     newuser.setWhoPays(ui->chiPagaLineEdit_2->text());

@@ -16,26 +16,26 @@ void Workstations::addGraphicItem(QGraphicsRectItem *item){
     workstations.push_back(item);
 }
 
-void Workstations::updateCurrentOrNextUser(UsersList &list){
+void Workstations::updateCurrentOrNextUser(ReservationsList &list){
     for (int i = 0; i < 32; i++){
         if (currentOrNextUser[i] != NULL)
             delete currentOrNextUser[i];
         currentOrNextUser[i] = NULL;
     }
-    for (QList<User>::Iterator iterator = list.getList().begin();
+    for (QList<Reservation>::Iterator iterator = list.getList().begin();
          iterator < list.getList().end(); iterator++){
-        User cur_user = *iterator;
+        Reservation cur_user = *iterator;
         QDate beginDate = cur_user.getBeginDate();
         QDate endDate = cur_user.getEndDate();
         int targetWorkstation = cur_user.getWorkstation()-1;
         if (currentOrNextUser[targetWorkstation] == NULL && (beginDate > currentDate || (beginDate<=currentDate &&
                                                                       endDate>=currentDate))){
-            currentOrNextUser[targetWorkstation] = new User(cur_user);
+            currentOrNextUser[targetWorkstation] = new Reservation(cur_user);
         }
         else if (currentOrNextUser[targetWorkstation] != NULL){
-            User cur_user2 = *currentOrNextUser[targetWorkstation];
+            Reservation cur_user2 = *currentOrNextUser[targetWorkstation];
             if (beginDate>currentDate && cur_user2.getBeginDate()>beginDate){
-                currentOrNextUser[targetWorkstation] = new User(cur_user);
+                currentOrNextUser[targetWorkstation] = new Reservation(cur_user);
             }
         }
 
@@ -43,7 +43,7 @@ void Workstations::updateCurrentOrNextUser(UsersList &list){
     }
 }
 
-void Workstations::setToolTips(UsersList& list){
+void Workstations::setToolTips(ReservationsList& list){
     updateCurrentOrNextUser(list);
     int index = -1;
     for (std::vector<QGraphicsRectItem*>::iterator it = workstations.begin(); it < workstations.end(); it++){
@@ -82,19 +82,19 @@ void Workstations::setToolTips(UsersList& list){
     }
 }
 
-void Workstations::colorItems(UsersList &list,
+void Workstations::colorItems(ReservationsList &list,
                               const QBrush availcolor, const QBrush notavailcolor){
     setToolTips(list);
-    QList<User>& userlist = list.getList();
+    QList<Reservation>& userlist = list.getList();
 
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
          iterator < workstations.end(); iterator++){
         (*iterator)->setBrush(availcolor);
     }
 
-    for (QList<User>::Iterator iterator = userlist.begin();
+    for (QList<Reservation>::Iterator iterator = userlist.begin();
          iterator < userlist.end(); iterator++){
-        User cur_user = *iterator;
+        Reservation cur_user = *iterator;
         QDate beginDate(cur_user.getBeginYear(),cur_user.getBeginMonth(),cur_user.getBeginDay());
         QDate endDate(cur_user.getEndYear(),cur_user.getEndMonth(),cur_user.getEndDay());
         if ( currentDate>= beginDate && currentDate <= endDate){
@@ -104,10 +104,10 @@ void Workstations::colorItems(UsersList &list,
 
 }
 
-void Workstations::colorItemsWithAvailability(UsersList& list,
+void Workstations::colorItemsWithAvailability(ReservationsList& list,
                                 const QBrush availcolor, const QBrush notavailcolor, const QBrush notavailperiodcolor,
                                 QDate end_date){
-    QList<User>& userlist = list.getList();
+    QList<Reservation>& userlist = list.getList();
     updateCurrentOrNextUser(list);
     int i = 0;
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
@@ -137,7 +137,7 @@ int Workstations::pointIsContainedInWorkstationN(QPointF point){
     return (aux ? i : -1);
 }
 
-User* Workstations::userInPosition(int pos){
+Reservation* Workstations::userInPosition(int pos){
     return currentOrNextUser[pos-1];
 }
 

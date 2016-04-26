@@ -6,12 +6,12 @@
 #include <QJsonObject>
 #include <QDate>
 
-class User {
+class Reservation {
  public:
 
-    User();
+    Reservation();
 
-    User(QString name, QString surname, QString whopays, int workstation,
+    Reservation(QString name, QString surname, QString whopays, int workstation,
          float tariff, int hourLeft, bool alldayacc, bool deposit,
          bool ethernet, bool telephone, QDate beginDate, QDate endDate);
 
@@ -79,7 +79,7 @@ class User {
 
     void write(QJsonObject& json) const;
 
-    bool operator==(const User& other) const;
+    bool operator==(const Reservation& other) const;
 
 
 

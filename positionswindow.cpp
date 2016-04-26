@@ -313,8 +313,8 @@ void PositionsWindow::addReservation(bool){
         addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked),endDateAvailability);
     else
         addreservation = new AddReservation(lastWorkstationClicked,displayedDate,workstations.freeUntil(lastWorkstationClicked));
-    QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(User)),
-                     this,SLOT(addReservationResult(User)));
+    QObject::connect(addreservation,SIGNAL(sendReservationToMainWindow(Reservation)),
+                     this,SLOT(addReservationResult(Reservation)));
     QObject::connect(addreservation,SIGNAL(cancelOrOkButtonSignal()),
                      this,SLOT(enableAgain()));
     addreservation->show();
@@ -326,21 +326,21 @@ void PositionsWindow::showDetails(bool){
     DetailsReservation* details = new DetailsReservation(workstations.userInPosition(lastWorkstationClicked));
     QObject::connect(details,SIGNAL(cancelOrOkButtonSignal()),
                      this,SLOT(enableAgain()));
-    QObject::connect(details,SIGNAL(sendModifiedUserSignal(User*,User)),
-                     this,SLOT(modifyUser(User*,User)));
-    QObject::connect(details,SIGNAL(deleteUserSignal(User*)),
-                     this,SLOT(deleteUser(User*)));
+    QObject::connect(details,SIGNAL(sendModifiedUserSignal(Reservation*,Reservation)),
+                     this,SLOT(modifyUser(Reservation*,Reservation)));
+    QObject::connect(details,SIGNAL(deleteUserSignal(Reservation*)),
+                     this,SLOT(deleteUser(Reservation*)));
 
     details->show();
 }
 
-void PositionsWindow::modifyUser(User* old_user,User new_user){
+void PositionsWindow::modifyUser(Reservation* old_user,Reservation new_user){
     list.modifyUser(*old_user,new_user);
     list.saveData("json");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
-void PositionsWindow::deleteUser(User *user){
+void PositionsWindow::deleteUser(Reservation *user){
     list.deleteUser(*user);
     list.saveData("json");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
@@ -351,7 +351,7 @@ void PositionsWindow::enableAgain(){
     this->setEnabled(true);
 }
 
-void PositionsWindow::addReservationResult(User user){
+void PositionsWindow::addReservationResult(Reservation user){
     list.addUser(user);
     if (!checkAvailOpen)
         workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);

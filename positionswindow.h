@@ -7,7 +7,7 @@
 #include <QMouseEvent>
 #include <ctime>
 #include <iostream>
-#include <userslist.h>
+#include <reservationslist.h>
 #include <workstations.h>
 #include <date.h>
 #include <QDate>
@@ -37,15 +37,15 @@ public slots:
 
     void addReservation(bool);
 
-    void addReservationResult(User user);
+    void addReservationResult(Reservation user);
 
     void showDetails(bool);
 
     void enableAgain();
 
-    void modifyUser(User* old_user,User new_user);
+    void modifyUser(Reservation* old_user,Reservation new_user);
 
-    void deleteUser(User* user);
+    void deleteUser(Reservation* user);
 
     void openCheckAvailability();
 
@@ -76,7 +76,7 @@ private:
 
     Workstations workstations;
 
-    UsersList list;
+    ReservationsList list;
 
     int lastWorkstationClicked;
 

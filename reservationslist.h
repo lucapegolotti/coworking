@@ -1,21 +1,21 @@
 #ifndef USERSLIST_H
 #define USERSLIST_H
 
-#include <user.h>
+#include <reservation.h>
 #include <Qt>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonArray>
 
-class UsersList {
+class ReservationsList {
  public:
-    QList<User>& getList();
+    QList<Reservation>& getList();
 
-    void addUser(User user);
+    void addUser(Reservation user);
 
-    void modifyUser(const User& old_user,const User &new_user);
+    void modifyUser(const Reservation& old_user,const Reservation &new_user);
 
-    void deleteUser(const User& user);
+    void deleteUser(const Reservation& user);
 
     int numberUsers();
 
@@ -28,7 +28,7 @@ class UsersList {
     bool loadData(QString format);
 
  private:
-    QList<User> list;
+    QList<Reservation> list;
 };
 
 #endif // USERSLIST_H

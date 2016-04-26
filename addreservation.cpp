@@ -126,7 +126,7 @@ void AddReservation::unlocksOkButton(){
 }
 
 void AddReservation::buttonOkPressed(){
-    User newuser;
+    Reservation newuser;
     newuser.setName(ui->nomeLineEdit->text());
     newuser.setSurname(ui->cognomeLineEdit->text());
     newuser.setWhoPays(ui->chiPagaLineEdit->text());

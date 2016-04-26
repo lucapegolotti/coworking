@@ -1,41 +1,41 @@
-#include <userslist.h>
+#include <reservationslist.h>
 
-QList<User>& UsersList::getList(){
+QList<Reservation>& ReservationsList::getList(){
     return list;
 }
 
-void UsersList::addUser(User user){
+void ReservationsList::addUser(Reservation user){
     list.push_front(user);
 }
 
-int UsersList::numberUsers(){
+int ReservationsList::numberUsers(){
     return list.size();
 }
 
-void UsersList::read(const QJsonObject& json){
+void ReservationsList::read(const QJsonObject& json){
     list.clear();
-    QJsonArray us_array = json["users"].toArray();
+    QJsonArray us_array = json["rsv"].toArray();
     for (int i = 0; i < us_array.size(); i++){
         QJsonObject obj = us_array[i].toObject();
-        User user;
+        Reservation user;
         user.read(obj);
         list.append(user);
     }
 }
 
-void UsersList::modifyUser(const User &old_user,const User& new_user){
+void ReservationsList::modifyUser(const Reservation &old_user,const Reservation& new_user){
     list.removeOne(old_user);
     list.push_front(new_user);
 }
 
-void UsersList::deleteUser(const User &user){
+void ReservationsList::deleteUser(const Reservation &user){
     list.removeOne(user);
 }
 
 
-void UsersList::write(QJsonObject& json) const{
+void ReservationsList::write(QJsonObject& json) const{
     QJsonArray us_array;
-    foreach( const User user, list){
+    foreach( const Reservation user, list){
         QJsonObject obj;
         user.write(obj);
         us_array.append(obj);
@@ -43,10 +43,10 @@ void UsersList::write(QJsonObject& json) const{
     json["users"] = us_array;
 }
 
-bool UsersList::saveData(QString format){
+bool ReservationsList::saveData(QString format){
     QFile sfile( format == "json" ?
-                     QStringLiteral("utenti.json") :
-                     QStringLiteral("utenti.dat"));
+                     QStringLiteral("prenotazioni.json") :
+                     QStringLiteral("prenotazioni.dat"));
 
     if (!sfile.open(QIODevice::WriteOnly)){
         qWarning("Could not open file");
@@ -65,10 +65,10 @@ bool UsersList::saveData(QString format){
 
 }
 
-bool UsersList::loadData(QString format){
+bool ReservationsList::loadData(QString format){
     QFile lfile( format == "json" ?
-                     QStringLiteral("utenti.json") :
-                     QStringLiteral("utenti.dat"));
+                     QStringLiteral("prenotazioni.json") :
+                     QStringLiteral("prenotazioni.dat"));
 
     if (!lfile.open(QIODevice::ReadOnly)){
         qWarning("Could not open file");

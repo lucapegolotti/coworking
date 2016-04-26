@@ -1,14 +1,14 @@
 #ifndef WORKSTATIONS_H
 #define WORKSTATIONS_H
 
-#include <userslist.h>
+#include <reservationslist.h>
 #include <QGraphicsRectItem>
 #include <QList>
 #include <QColor>
 #include <QBrush>
 #include <date.h>
 #include <QDate>
-#include <user.h>
+#include <reservation.h>
 class Workstations{
  public:
 
@@ -18,10 +18,10 @@ class Workstations{
 
     void addGraphicItem(QGraphicsRectItem* item);
 
-    void colorItems(UsersList& list,
+    void colorItems(ReservationsList& list,
                     const QBrush availcolor, const QBrush notavailcolor);
 
-    void colorItemsWithAvailability(UsersList& list,
+    void colorItemsWithAvailability(ReservationsList& list,
                                     const QBrush availcolor, const QBrush notavailcolor, const QBrush notavailperiodcolor,
                                     QDate end_date);
 
@@ -29,11 +29,11 @@ class Workstations{
 
     bool isWorkstationOfThatColor(int number, QBrush color);
 
-    void updateCurrentOrNextUser(UsersList &list);
+    void updateCurrentOrNextUser(ReservationsList &list);
 
-    void setToolTips(UsersList &list);
+    void setToolTips(ReservationsList &list);
 
-    User* userInPosition(int pos);
+    Reservation* userInPosition(int pos);
 
     QDate freeUntil(int index);
 
@@ -41,7 +41,7 @@ class Workstations{
  private:
     std::vector<QGraphicsRectItem*> workstations;
 
-    User* currentOrNextUser[32];
+    Reservation* currentOrNextUser[32];
 
     QDate currentDate;
 

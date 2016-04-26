@@ -1,8 +1,8 @@
-#include <user.h>
+#include <reservation.h>
 
-User::User() {}
+Reservation::Reservation() {}
 
-User::User(QString name, QString surname, QString whopays, int workstation,
+Reservation::Reservation(QString name, QString surname, QString whopays, int workstation,
            float tariff, int hourLeft, bool alldayacc, bool deposit,
            bool ethernet, bool telephone, QDate beginDate, QDate endDate) :
     name(name),
@@ -22,135 +22,135 @@ User::User(QString name, QString surname, QString whopays, int workstation,
     endMonth(endDate.month()),
     endYear(endDate.year()){}
 
-void User::setName(QString name){
+void Reservation::setName(QString name){
     this->name = name;
 }
 
-void User::setSurname(QString surname){
+void Reservation::setSurname(QString surname){
     this->surname = surname;
 }
 
-void User::setWhoPays(QString who){
+void Reservation::setWhoPays(QString who){
     whoPays = who;
 }
 
-void User::setWorkstation(int workstation){
+void Reservation::setWorkstation(int workstation){
     this->workstation = workstation;
 }
 
-void User::setDailyTariff(float tariff){
+void Reservation::setDailyTariff(float tariff){
     dailyTariff = tariff;
 }
 
-void User::detractMeetingroomHours(int hoursSpent){
+void Reservation::detractMeetingroomHours(int hoursSpent){
     meetingroomHoursLeft -= hoursSpent;
     if (meetingroomHoursLeft < 0)
         meetingroomHoursLeft = 0;
 }
 
-void User::setAllDayAccess(bool value){
+void Reservation::setAllDayAccess(bool value){
     allDayAccess = value;
 }
 
-void User::setDepositKey(bool value){
+void Reservation::setDepositKey(bool value){
     depositKey = value;
 }
 
-void User::setEthernet(bool value){
+void Reservation::setEthernet(bool value){
     ethernet = value;
 }
 
-void User::setTelephone(bool value){
+void Reservation::setTelephone(bool value){
     telephone = value;
 }
 
-void User::setBeginDate(int day, int month, int year){
+void Reservation::setBeginDate(int day, int month, int year){
     beginDay = day;
     beginMonth = month;
     beginYear = year;
 }
 
-void User::setEndDate(int day, int month, int year){
+void Reservation::setEndDate(int day, int month, int year){
     endDay = day;
     endMonth = month;
     endYear = year;
 }
 
-QString User::getName() const{
+QString Reservation::getName() const{
     return name;
 }
 
-QString User::getSurname() const{
+QString Reservation::getSurname() const{
     return surname;
 }
 
-QString User::getWhoPays() const{
+QString Reservation::getWhoPays() const{
     return whoPays;
 }
 
-int User::getWorkstation() const{
+int Reservation::getWorkstation() const{
     return workstation;
 }
 
-float User::getDailyTariff() const{
+float Reservation::getDailyTariff() const{
     return dailyTariff;
 }
 
-int User::getMeetingroomHourse() const{
+int Reservation::getMeetingroomHourse() const{
     return meetingroomHoursLeft;
 }
 
-bool User::getAllDayAccess() const{
+bool Reservation::getAllDayAccess() const{
     return allDayAccess;
 }
 
-bool User::getDepositKey() const{
+bool Reservation::getDepositKey() const{
     return depositKey;
 }
 
-bool User::getEthernet() const{
+bool Reservation::getEthernet() const{
     return ethernet;
 }
 
-bool User::getTelephone() const{
+bool Reservation::getTelephone() const{
     return telephone;
 }
 
-int User::getBeginDay() const{
+int Reservation::getBeginDay() const{
     return beginDay;
 }
 
-int User::getBeginMonth() const{
+int Reservation::getBeginMonth() const{
     return beginMonth;
 }
 
-int User::getBeginYear() const{
+int Reservation::getBeginYear() const{
     return beginYear;
 }
 
-QDate User::getBeginDate() const{
+QDate Reservation::getBeginDate() const{
     QDate beginDate(beginYear,beginMonth,beginDay);
     return beginDate;
 }
 
-int User::getEndDay() const{
+int Reservation::getEndDay() const{
     return endDay;
 }
 
-int User::getEndMonth() const{
+int Reservation::getEndMonth() const{
     return endMonth;
 }
 
-int User::getEndYear() const{
+int Reservation::getEndYear() const{
     return endYear;
 }
 
-QDate User::getEndDate() const{
+QDate Reservation::getEndDate() const{
     QDate endDate(endYear,endMonth,endDay);
     return endDate;
 }
 
-void User::read(const QJsonObject &json){
+void Reservation::read(const QJsonObject &json){
     name = json["name"].toString();
     surname = json["surname"].toString();
     whoPays = json["whopays"].toString();
@@ -169,7 +169,7 @@ void User::read(const QJsonObject &json){
     endYear = json["endyear"].toInt();
 }
 
-void User::write(QJsonObject &json) const{
+void Reservation::write(QJsonObject &json) const{
     json["name"] = name;
     json["surname"]= surname;
     json["whopays"] = whoPays;
@@ -188,7 +188,7 @@ void User::write(QJsonObject &json) const{
     json["endyear"] = endYear;
 }
 
-bool User::operator==(const User& other) const{
+bool Reservation::operator==(const Reservation& other) const{
     return (name == other.getName() &&
             surname == other.getSurname() &&
             whoPays == other.getWhoPays() &&

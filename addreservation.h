@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include <iostream>
-#include <User.h>
+#include <reservation.h>
 #include <QDate>
 
 namespace Ui {
@@ -31,7 +31,7 @@ public slots:
     void beginDateChanged(QDate date);
 
 signals:
-    void sendReservationToMainWindow(User user);
+    void sendReservationToMainWindow(Reservation user);
 
     void cancelOrOkButtonSignal();
 
