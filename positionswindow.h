@@ -56,8 +56,6 @@ public slots:
 
     void checkAvailabilityIsClosed();
 
-
-
 signals:
 
     void addingReservation();

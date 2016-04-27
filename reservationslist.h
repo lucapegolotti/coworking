@@ -9,6 +9,7 @@
 
 class ReservationsList {
  public:
+
     QList<Reservation>& getList();
 
     void addUser(Reservation user);
@@ -28,6 +29,7 @@ class ReservationsList {
     bool loadData(QString format);
 
  private:
+
     QList<Reservation> list;
 };
 

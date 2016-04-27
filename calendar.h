@@ -16,6 +16,7 @@ class Calendar : public QWidget
     Q_OBJECT
 
 public:
+
     explicit Calendar(QWidget *parent = 0);
 
     Calendar(QDate cur_date,QWidget * parent = 0);
@@ -24,9 +25,11 @@ public:
 
 
 signals:
+
     void sendChosenDate(const QDate& date);
 
 private slots:
+
     void on_calendarWidget_clicked(const QDate &date);
 
     void disable();
@@ -34,6 +37,7 @@ private slots:
     void enable();
 
 private:
+
     Ui::Calendar *ui;
 
 };

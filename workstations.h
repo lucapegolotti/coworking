@@ -28,7 +28,7 @@ class Workstations{
 
     bool isWorkstationOfThatColor(int number, QBrush color);
 
-    void updateCurrentOrNextUser(ReservationsList &list);
+    void updateCurrentOrNextReservation(ReservationsList &list);
 
     void setToolTips(ReservationsList &list);
 
@@ -36,11 +36,11 @@ class Workstations{
 
     QDate freeUntil(int index);
 
-
  private:
+
     std::vector<QGraphicsRectItem*> workstations;
 
-    Reservation* currentOrNextUser[32];
+    Reservation* currentOrNextReservation[32];
 
     QDate currentDate;
 

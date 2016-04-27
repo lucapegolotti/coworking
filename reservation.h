@@ -81,9 +81,6 @@ class Reservation {
 
     bool operator==(const Reservation& other) const;
 
-
-
-
  private:
 
     QString name;
@@ -100,17 +97,24 @@ class Reservation {
 
     // booleans
     bool allDayAccess;
+
     bool depositKey;
+
     bool ethernet;
+
     bool telephone;
 
     // dates
     int beginDay;
+
     int beginMonth;
+
     int beginYear;
 
     int endDay;
+
     int endMonth;
+
     int endYear;
 
 };

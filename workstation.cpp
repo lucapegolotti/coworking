@@ -4,7 +4,7 @@
 Workstations::Workstations(QDate date) :
     currentDate(date){
     for (int i = 0; i < 32; i++){
-        currentOrNextUser[i] = NULL;
+        currentOrNextReservation[i] = NULL;
     }
 }
 
@@ -16,11 +16,11 @@ void Workstations::addGraphicItem(QGraphicsRectItem *item){
     workstations.push_back(item);
 }
 
-void Workstations::updateCurrentOrNextUser(ReservationsList &list){
+void Workstations::updateCurrentOrNextReservation(ReservationsList &list){
     for (int i = 0; i < 32; i++){
-        if (currentOrNextUser[i] != NULL)
-            delete currentOrNextUser[i];
-        currentOrNextUser[i] = NULL;
+        if (currentOrNextReservation[i] != NULL)
+            delete currentOrNextReservation[i];
+        currentOrNextReservation[i] = NULL;
     }
     for (QList<Reservation>::Iterator iterator = list.getList().begin();
          iterator < list.getList().end(); iterator++){
@@ -28,14 +28,14 @@ void Workstations::updateCurrentOrNextUser(ReservationsList &list){
         QDate beginDate = cur_user.getBeginDate();
         QDate endDate = cur_user.getEndDate();
         int targetWorkstation = cur_user.getWorkstation()-1;
-        if (currentOrNextUser[targetWorkstation] == NULL && (beginDate > currentDate || (beginDate<=currentDate &&
+        if (currentOrNextReservation[targetWorkstation] == NULL && (beginDate > currentDate || (beginDate<=currentDate &&
                                                                       endDate>=currentDate))){
-            currentOrNextUser[targetWorkstation] = new Reservation(cur_user);
+            currentOrNextReservation[targetWorkstation] = new Reservation(cur_user);
         }
-        else if (currentOrNextUser[targetWorkstation] != NULL){
-            Reservation cur_user2 = *currentOrNextUser[targetWorkstation];
+        else if (currentOrNextReservation[targetWorkstation] != NULL){
+            Reservation cur_user2 = *currentOrNextReservation[targetWorkstation];
             if (beginDate>currentDate && cur_user2.getBeginDate()>beginDate){
-                currentOrNextUser[targetWorkstation] = new Reservation(cur_user);
+                currentOrNextReservation[targetWorkstation] = new Reservation(cur_user);
             }
         }
 
@@ -44,16 +44,16 @@ void Workstations::updateCurrentOrNextUser(ReservationsList &list){
 }
 
 void Workstations::setToolTips(ReservationsList& list){
-    updateCurrentOrNextUser(list);
+    updateCurrentOrNextReservation(list);
     int index = -1;
     for (std::vector<QGraphicsRectItem*>::iterator it = workstations.begin(); it < workstations.end(); it++){
         QGraphicsRectItem* curr = *it;
         index++;
-        if (currentOrNextUser[index] == NULL){
+        if (currentOrNextReservation[index] == NULL){
             curr->setToolTip("Libero sempre");
         }
         else {
-            QDate beginDate = currentOrNextUser[index]->getBeginDate();
+            QDate beginDate = currentOrNextReservation[index]->getBeginDate();
             if (beginDate>currentDate){
                 QString tooltip = "Libero fino al ";
                 tooltip.append(QString::number(beginDate.day()))
@@ -65,9 +65,9 @@ void Workstations::setToolTips(ReservationsList& list){
                 curr->setToolTip(tooltip);
             }
             else{
-                QDate endDate = currentOrNextUser[index]->getEndDate();
+                QDate endDate = currentOrNextReservation[index]->getEndDate();
                 QString name;
-                name.append(currentOrNextUser[index]->getName()).append(" ").append(currentOrNextUser[index]->getSurname());
+                name.append(currentOrNextReservation[index]->getName()).append(" ").append(currentOrNextReservation[index]->getSurname());
                 QString tooltip = "Occupato da ";
                 tooltip.append(name).append(" fino al ");
                 tooltip.append(QString::number(endDate.day()))
@@ -107,14 +107,14 @@ void Workstations::colorItems(ReservationsList &list,
 void Workstations::colorItemsWithAvailability(ReservationsList& list,
                                 const QBrush availcolor, const QBrush notavailperiodcolor,
                                 QDate end_date){
-    updateCurrentOrNextUser(list);
+    updateCurrentOrNextReservation(list);
     int i = 0;
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
          iterator < workstations.end(); iterator++){
         (*iterator)->setBrush(notavailperiodcolor);
-        if (currentOrNextUser[i] == NULL){
+        if (currentOrNextReservation[i] == NULL){
             (*iterator)->setBrush(availcolor);
-        } else if (end_date<currentOrNextUser[i]->getBeginDate()){
+        } else if (end_date<currentOrNextReservation[i]->getBeginDate()){
             (*iterator)->setBrush(availcolor);
         }
         i++;
@@ -137,7 +137,7 @@ int Workstations::pointIsContainedInWorkstationN(QPointF point){
 }
 
 Reservation* Workstations::userInPosition(int pos){
-    return currentOrNextUser[pos-1];
+    return currentOrNextReservation[pos-1];
 }
 
 bool Workstations::isWorkstationOfThatColor(int number, QBrush color){
@@ -145,9 +145,9 @@ bool Workstations::isWorkstationOfThatColor(int number, QBrush color){
 }
 
 QDate Workstations::freeUntil(int index){
-    if (currentOrNextUser[index-1] == NULL){
+    if (currentOrNextReservation[index-1] == NULL){
         return {1992,11,5};
     }
-    std::cout<< currentOrNextUser[index-1]->getBeginDate().day()<<std::endl;
-    return currentOrNextUser[index-1]->getBeginDate();
+    std::cout<< currentOrNextReservation[index-1]->getBeginDate().day()<<std::endl;
+    return currentOrNextReservation[index-1]->getBeginDate();
 }

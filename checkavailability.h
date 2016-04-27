@@ -12,20 +12,29 @@ class CheckAvailability : public QDialog
     Q_OBJECT
 
 public:
+
     CheckAvailability(QDate current_date,QWidget *parent = 0);
+
     ~CheckAvailability();
 
 private slots:
+
     void on_beginDateEdit_dateChanged(const QDate &date);
+
     void on_endDateEdit_dateChanged(const QDate &date);
+
     void closedIsPressed();
 
 signals:
+
     void beginDateChangedSignal(const QDate& date);
+
     void endDateChangedSignal(const QDate& date);
+
     void closeIsPressedSignal();
 
 private:
+
     Ui::CheckAvailability *ui;
 };
 
