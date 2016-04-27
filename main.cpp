@@ -5,8 +5,6 @@
 #include <unistd.h>
 #include <QGraphicsRectItem>
 #include <reservation.h>
-#include <date.h>
-
 
 int main(int argc, char *argv[])
 {

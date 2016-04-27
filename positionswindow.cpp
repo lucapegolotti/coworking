@@ -356,7 +356,7 @@ void PositionsWindow::addReservationResult(Reservation user){
     if (!checkAvailOpen)
         workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     else
-        workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
+        workstations.colorItemsWithAvailability(list,*freeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
     list.saveData("json");
 }
 
@@ -377,7 +377,7 @@ void PositionsWindow::openCheckAvailability(){
     QObject::connect(check,SIGNAL(closeIsPressedSignal()),
                      this,SLOT(checkAvailabilityIsClosed()));
     endDateAvailability = displayedDate;
-    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
 
 }
 
@@ -389,13 +389,13 @@ void PositionsWindow::checkAvailabilityIsClosed(){
 
 void PositionsWindow::receiveNewEndDateAvailability(QDate date){
     endDateAvailability = date;
-    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,
                                             *notAvailableInPeriodColor,endDateAvailability);
 }
 
 void PositionsWindow::receiveNewBeginDateAvailability(QDate date){
     changeCurrentDate(date);
-    workstations.colorItemsWithAvailability(list,*freeSpotColor,*notFreeSpotColor,
+    workstations.colorItemsWithAvailability(list,*freeSpotColor,
                                             *notAvailableInPeriodColor,endDateAvailability);
 
 }

@@ -9,7 +9,6 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
     ui->setupUi(this);
     ui->beginDateEdit->setDate(beginDate);
     ui->endDateEdit->setDate(beginDate);
-    std::cout << "re1f" << std::endl;
     QDate myBirthday(1992,11,5);
     if (maximumEndDate != myBirthday){
         std::cout << maximumEndDate.day() << std::endl;

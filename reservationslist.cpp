@@ -40,7 +40,7 @@ void ReservationsList::write(QJsonObject& json) const{
         user.write(obj);
         us_array.append(obj);
     }
-    json["users"] = us_array;
+    json["rsv"] = us_array;
 }
 
 bool ReservationsList::saveData(QString format){

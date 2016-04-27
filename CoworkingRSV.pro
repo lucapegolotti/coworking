@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp\
         positionswindow.cpp \
     workstation.cpp \
-    date.cpp \
     calendar.cpp \
     addreservation.cpp \
     detailsreservation.cpp \
@@ -25,7 +24,6 @@ SOURCES += main.cpp\
 
 HEADERS  += positionswindow.h \
     workstations.h \
-    date.h \
     calendar.h \
     addreservation.h \
     detailsreservation.h \

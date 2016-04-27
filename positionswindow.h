@@ -9,7 +9,6 @@
 #include <iostream>
 #include <reservationslist.h>
 #include <workstations.h>
-#include <date.h>
 #include <QDate>
 #include <addreservation.h>
 #include <detailsreservation.h>
@@ -90,7 +89,7 @@ private:
 
     QColor* notAvailableInPeriodColor;
 
-    void setTime(Date date);
+    void setTime(QDate date);
 
     bool checkAvailOpen;
 

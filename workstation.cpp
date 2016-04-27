@@ -105,9 +105,8 @@ void Workstations::colorItems(ReservationsList &list,
 }
 
 void Workstations::colorItemsWithAvailability(ReservationsList& list,
-                                const QBrush availcolor, const QBrush notavailcolor, const QBrush notavailperiodcolor,
+                                const QBrush availcolor, const QBrush notavailperiodcolor,
                                 QDate end_date){
-    QList<Reservation>& userlist = list.getList();
     updateCurrentOrNextUser(list);
     int i = 0;
     for (std::vector<QGraphicsRectItem*>::iterator iterator = workstations.begin();
