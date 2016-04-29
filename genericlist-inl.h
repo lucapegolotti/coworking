@@ -1,49 +1,57 @@
-#include <reservationslist.h>
+#ifndef GENERICLISTINL_H
+#define GENERICLISTINL_H
 
-QList<Reservation>& ReservationsList::getList(){
+template<class Data>
+QList<Data>& GenericList<Data>::getList(){
     return list;
 }
 
-void ReservationsList::addUser(Reservation user){
+template <class Data>
+void GenericList<Data>::addElement(Data user) {
     list.push_front(user);
 }
 
-int ReservationsList::numberUsers(){
+template<class Data>
+int GenericList<Data>::numberElements(){
     return list.size();
 }
 
-void ReservationsList::read(const QJsonObject& json){
+template<class Data>
+void GenericList<Data>::read(const QJsonObject& json){
     list.clear();
     QJsonArray us_array = json["rsv"].toArray();
     for (int i = 0; i < us_array.size(); i++){
         QJsonObject obj = us_array[i].toObject();
-        Reservation user;
-        user.read(obj);
-        list.append(user);
+        Data data;
+        data.read(obj);
+        list.append(data);
     }
 }
 
-void ReservationsList::modifyUser(const Reservation &old_user,const Reservation& new_user){
-    list.removeOne(old_user);
-    list.push_front(new_user);
+template<class Data>
+void GenericList<Data>::modifyElement(const Data old_element,const Data new_element){
+    list.removeOne(old_element);
+    list.push_front(new_element);
 }
 
-void ReservationsList::deleteUser(const Reservation &user){
-    list.removeOne(user);
+template<class Data>
+void GenericList<Data>::deleteElement(const Data element){
+    list.removeOne(element);
 }
 
-
-void ReservationsList::write(QJsonObject& json) const{
+template<class Data>
+void GenericList<Data>::write(QJsonObject& json) const{
     QJsonArray us_array;
-    foreach( const Reservation user, list){
+    foreach( const Data element, list){
         QJsonObject obj;
-        user.write(obj);
+        element.write(obj);
         us_array.append(obj);
     }
     json["rsv"] = us_array;
 }
 
-bool ReservationsList::saveData(QString format){
+template<class Data>
+bool GenericList<Data>::saveData(QString format){
     QFile sfile( format == "json" ?
                      QStringLiteral("prenotazioni.json") :
                      QStringLiteral("prenotazioni.dat"));
@@ -65,7 +73,8 @@ bool ReservationsList::saveData(QString format){
 
 }
 
-bool ReservationsList::loadData(QString format){
+template<class Data>
+bool GenericList<Data>::loadData(QString format){
     QFile lfile( format == "json" ?
                      QStringLiteral("prenotazioni.json") :
                      QStringLiteral("prenotazioni.dat"));
@@ -88,3 +97,6 @@ bool ReservationsList::loadData(QString format){
     return true;
 
 }
+
+
+#endif // GENERICLISTINL_H

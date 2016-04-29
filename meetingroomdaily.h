@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QLabel>
 #include <QItemDelegate>
+#include <meetingroomprogram.h>
+#include <QListWidgetItem>
 
 namespace Ui {
 class MeetingRoomDaily;
@@ -13,21 +15,20 @@ class MeetingRoomDaily : public QWidget
 {
     Q_OBJECT
 
-    class CustomDelegate : public QItemDelegate {
-     public:
-        QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const{
-            QSize size = QItemDelegate::sizeHint(option,index);
-            size.setHeight(size.height());
-            return size;
-        }
-    };
-
  public:
+
     explicit MeetingRoomDaily(QWidget *parent = 0);
+
     ~MeetingRoomDaily();
 
+    void updateWithProgram(MeetingRoomProgram& program);
+
  private:
+
     Ui::MeetingRoomDaily *ui;
+
+    QListWidgetItem* names_labels[15];
+
 };
 
 #endif // MEETINGROOMDAILY_H

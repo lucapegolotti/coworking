@@ -7,7 +7,8 @@
 #include <QMouseEvent>
 #include <ctime>
 #include <iostream>
-#include <reservationslist.h>
+#include <reservation.h>
+#include <genericlist.h>
 #include <workstations.h>
 #include <QDate>
 #include <addreservation.h>
@@ -73,7 +74,7 @@ private:
 
     Workstations workstations;
 
-    ReservationsList list;
+    GenericList<Reservation> list;
 
     int lastWorkstationClicked;
 

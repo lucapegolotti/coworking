@@ -1,7 +1,7 @@
 #ifndef WORKSTATIONS_H
 #define WORKSTATIONS_H
 
-#include <reservationslist.h>
+#include <genericlist.h>
 #include <QGraphicsRectItem>
 #include <QList>
 #include <QColor>
@@ -17,10 +17,10 @@ class Workstations{
 
     void addGraphicItem(QGraphicsRectItem* item);
 
-    void colorItems(ReservationsList& list,
+    void colorItems(GenericList<Reservation>& list,
                     const QBrush availcolor, const QBrush notavailcolor);
 
-    void colorItemsWithAvailability(ReservationsList& list,
+    void colorItemsWithAvailability(GenericList<Reservation>& list,
                                     const QBrush availcolor, const QBrush notavailperiodcolor,
                                     QDate end_date);
 
@@ -28,9 +28,9 @@ class Workstations{
 
     bool isWorkstationOfThatColor(int number, QBrush color);
 
-    void updateCurrentOrNextReservation(ReservationsList &list);
+    void updateCurrentOrNextReservation(GenericList<Reservation> &list);
 
-    void setToolTips(ReservationsList &list);
+    void setToolTips(GenericList<Reservation> &list);
 
     Reservation* userInPosition(int pos);
 

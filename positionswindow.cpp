@@ -335,13 +335,13 @@ void PositionsWindow::showDetails(bool){
 }
 
 void PositionsWindow::modifyUser(Reservation* old_user,Reservation new_user){
-    list.modifyUser(*old_user,new_user);
+    list.modifyElement(*old_user,new_user);
     list.saveData("json");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
 void PositionsWindow::deleteUser(Reservation *user){
-    list.deleteUser(*user);
+    list.deleteElement(*user);
     list.saveData("json");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
@@ -352,7 +352,7 @@ void PositionsWindow::enableAgain(){
 }
 
 void PositionsWindow::addReservationResult(Reservation user){
-    list.addUser(user);
+    list.addElement(user);
     if (!checkAvailOpen)
         workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     else

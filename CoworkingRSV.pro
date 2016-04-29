@@ -20,9 +20,10 @@ SOURCES += main.cpp\
     detailsreservation.cpp \
     checkavailability.cpp \
     reservation.cpp \
-    reservationslist.cpp \
     rsvmeetingroom.cpp \
-    meetingroomdaily.cpp
+    meetingroomdaily.cpp \
+    meetingroomprogram.cpp \
+    rsvmeetingroomlist.cpp
 
 HEADERS  += positionswindow.h \
     workstations.h \
@@ -31,9 +32,12 @@ HEADERS  += positionswindow.h \
     detailsreservation.h \
     checkavailability.h \
     reservation.h \
-    reservationslist.h \
     rsvmeetingroom.h \
-    meetingroomdaily.h
+    meetingroomdaily.h \
+    meetingroomprogram.h \
+    rsvmeetingroomlist.h \
+    genericlist.h \
+    genericlist-inl.h
 
 FORMS    += positionswindow.ui \
     calendar.ui \

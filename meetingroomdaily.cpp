@@ -3,16 +3,9 @@
 
 MeetingRoomDaily::MeetingRoomDaily(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::MeetingRoomDaily)
-{
+    ui(new Ui::MeetingRoomDaily) {
     ui->setupUi(this);
-    CustomDelegate* delegate = new CustomDelegate();
-    ui->listWidget->setItemDelegate(delegate);
-    ui->listWidget->setStyleSheet("QListWidget::item { border-bottom: 1 px solid black; }");
     QFont font1;
-    QFont font2;
-    // font1.setPointSize(10);
-    // font2.setPointSize(5);
 
     int row = 0;
     for (int i = 0; i < 15; i++){
@@ -26,8 +19,9 @@ MeetingRoomDaily::MeetingRoomDaily(QWidget *parent) :
 
         row++;
         QListWidgetItem* item = new QListWidgetItem();
+        names_labels[i] = item;
         item->setFlags(Qt::NoItemFlags);
-        item->setText("Libero");
+        item->setText("");
         item->setFont(font1);
         item->setTextAlignment(2);
         ui->listWidget->insertItem(row,item);
@@ -55,4 +49,10 @@ MeetingRoomDaily::MeetingRoomDaily(QWidget *parent) :
 MeetingRoomDaily::~MeetingRoomDaily()
 {
     delete ui;
+}
+
+void MeetingRoomDaily::updateWithProgram(MeetingRoomProgram &program){
+    for (int i = 0; i < 15; i++){
+        names_labels[i]->setText(program.getNameAt(i));
+    }
 }

@@ -16,7 +16,7 @@ void Workstations::addGraphicItem(QGraphicsRectItem *item){
     workstations.push_back(item);
 }
 
-void Workstations::updateCurrentOrNextReservation(ReservationsList &list){
+void Workstations::updateCurrentOrNextReservation(GenericList<Reservation> &list){
     for (int i = 0; i < 32; i++){
         if (currentOrNextReservation[i] != NULL)
             delete currentOrNextReservation[i];
@@ -43,7 +43,7 @@ void Workstations::updateCurrentOrNextReservation(ReservationsList &list){
     }
 }
 
-void Workstations::setToolTips(ReservationsList& list){
+void Workstations::setToolTips(GenericList<Reservation>& list){
     updateCurrentOrNextReservation(list);
     int index = -1;
     for (std::vector<QGraphicsRectItem*>::iterator it = workstations.begin(); it < workstations.end(); it++){
@@ -82,7 +82,7 @@ void Workstations::setToolTips(ReservationsList& list){
     }
 }
 
-void Workstations::colorItems(ReservationsList &list,
+void Workstations::colorItems(GenericList<Reservation> &list,
                               const QBrush availcolor, const QBrush notavailcolor){
     setToolTips(list);
     QList<Reservation>& userlist = list.getList();
@@ -104,7 +104,7 @@ void Workstations::colorItems(ReservationsList &list,
 
 }
 
-void Workstations::colorItemsWithAvailability(ReservationsList& list,
+void Workstations::colorItemsWithAvailability(GenericList<Reservation>& list,
                                 const QBrush availcolor, const QBrush notavailperiodcolor,
                                 QDate end_date){
     updateCurrentOrNextReservation(list);

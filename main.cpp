@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include <reservation.h>
 #include <meetingroomdaily.h>
+#include <meetingroomprogram.h>
 
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,14 @@ int main(int argc, char *argv[])
 
     PositionsWindow w;
     MeetingRoomDaily m;
+    RSVMeetingRoomList list;
+    QDate date;
+
+    MeetingRoomProgram program(list,date);
+    m.updateWithProgram(program);
+
+
+
 
     w.show();
 
