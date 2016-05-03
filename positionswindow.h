@@ -15,6 +15,9 @@
 #include <detailsreservation.h>
 #include <checkavailability.h>
 #include <calendar.h>
+#include <meetingroomdaily.h>
+#include <rsvmeetingroom.h>
+#include <meetingroomprogram.h>
 
 namespace Ui {
 class PositionsWindow;
@@ -55,6 +58,8 @@ public slots:
 
     void openCalendar();
 
+    void openMeetingRoomProgram();
+
     void checkAvailabilityIsClosed();
 
 signals:
@@ -76,6 +81,8 @@ private:
 
     GenericList<Reservation> list;
 
+    GenericList<RSVMeetingRoom> meetingRoomList;
+
     int lastWorkstationClicked;
 
     QDate displayedDate;
@@ -91,7 +98,6 @@ private:
     void setTime(QDate date);
 
     bool checkAvailOpen;
-
 };
 
 #endif // POSITIONSWINDOW_H

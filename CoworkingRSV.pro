@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +24,7 @@ SOURCES += main.cpp\
     rsvmeetingroom.cpp \
     meetingroomdaily.cpp \
     meetingroomprogram.cpp \
-    rsvmeetingroomlist.cpp
+    addmeetingroomrsv.cpp
 
 HEADERS  += positionswindow.h \
     workstations.h \
@@ -35,13 +36,14 @@ HEADERS  += positionswindow.h \
     rsvmeetingroom.h \
     meetingroomdaily.h \
     meetingroomprogram.h \
-    rsvmeetingroomlist.h \
     genericlist.h \
-    genericlist-inl.h
+    genericlist-inl.h \
+    addmeetingroomrsv.h
 
 FORMS    += positionswindow.ui \
     calendar.ui \
     addreservation.ui \
     detailsreservation.ui \
     checkavailability.ui \
-    meetingroomdaily.ui
+    meetingroomdaily.ui \
+    addmeetingroomrsv.ui

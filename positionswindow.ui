@@ -523,6 +523,7 @@
      <string>Vista</string>
     </property>
     <addaction name="actionApri_Calendario"/>
+    <addaction name="actionProgramma_aula_riunioni_aula_corsi"/>
    </widget>
    <addaction name="menuStrumenti"/>
    <addaction name="menuVista"/>
@@ -540,6 +541,11 @@
   <action name="actionApri_Calendario">
    <property name="text">
     <string>Apri Calendario</string>
+   </property>
+  </action>
+  <action name="actionProgramma_aula_riunioni_aula_corsi">
+   <property name="text">
+    <string>Programma aula riunioni / aula corsi</string>
    </property>
   </action>
  </widget>

@@ -1,6 +1,8 @@
 #ifndef GENERICLISTINL_H
 #define GENERICLISTINL_H
 
+#include <QString>
+
 template<class Data>
 QList<Data>& GenericList<Data>::getList(){
     return list;
@@ -51,10 +53,9 @@ void GenericList<Data>::write(QJsonObject& json) const{
 }
 
 template<class Data>
-bool GenericList<Data>::saveData(QString format){
-    QFile sfile( format == "json" ?
-                     QStringLiteral("prenotazioni.json") :
-                     QStringLiteral("prenotazioni.dat"));
+bool GenericList<Data>::saveData(QString format, QString filename){
+    filename.append(".").append(format);
+    QFile sfile(filename);
 
     if (!sfile.open(QIODevice::WriteOnly)){
         qWarning("Could not open file");
@@ -74,10 +75,10 @@ bool GenericList<Data>::saveData(QString format){
 }
 
 template<class Data>
-bool GenericList<Data>::loadData(QString format){
-    QFile lfile( format == "json" ?
-                     QStringLiteral("prenotazioni.json") :
-                     QStringLiteral("prenotazioni.dat"));
+bool GenericList<Data>::loadData(QString format, QString filename){
+
+    filename.append(".").append(format);
+    QFile lfile(filename);
 
     if (!lfile.open(QIODevice::ReadOnly)){
         qWarning("Could not open file");

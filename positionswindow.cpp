@@ -9,8 +9,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     notFreeSpotColor(new QColor(253,152,152)),
     notAvailableInPeriodColor(new QColor(190,190,255)),
     checkAvailOpen(false){
-
-    list.loadData("json");
+    meetingRoomList.loadData("json","prenotazioni_riunioni");
+    list.loadData("json","prenotazioni");
 
     ui->setupUi(this);
 
@@ -243,6 +243,9 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     QObject::connect(ui->actionApri_Calendario,SIGNAL(triggered(bool)),
                      this,SLOT(openCalendar()));
 
+    QObject::connect(ui->actionProgramma_aula_riunioni_aula_corsi,SIGNAL(triggered(bool)),
+                     this,SLOT(openMeetingRoomProgram()));
+
 }
 
 PositionsWindow::~PositionsWindow(){
@@ -336,13 +339,13 @@ void PositionsWindow::showDetails(bool){
 
 void PositionsWindow::modifyUser(Reservation* old_user,Reservation new_user){
     list.modifyElement(*old_user,new_user);
-    list.saveData("json");
+    list.saveData("json","prenotazioni");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
 void PositionsWindow::deleteUser(Reservation *user){
     list.deleteElement(*user);
-    list.saveData("json");
+    list.saveData("json","prenotazioni");
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
@@ -357,7 +360,7 @@ void PositionsWindow::addReservationResult(Reservation user){
         workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     else
         workstations.colorItemsWithAvailability(list,*freeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
-    list.saveData("json");
+    list.saveData("json","prenotazioni");
 }
 
 
@@ -378,7 +381,6 @@ void PositionsWindow::openCheckAvailability(){
                      this,SLOT(checkAvailabilityIsClosed()));
     endDateAvailability = displayedDate;
     workstations.colorItemsWithAvailability(list,*freeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
-
 }
 
 void PositionsWindow::checkAvailabilityIsClosed(){
@@ -490,4 +492,28 @@ void PositionsWindow::on_previousButton_clicked()
 void PositionsWindow::on_followingButton_clicked()
 {
     changeCurrentDate(displayedDate.addDays(1));
+}
+
+void PositionsWindow::openMeetingRoomProgram() {
+    /*
+    RSVMeetingRoom res;
+    res.setName("Luca");
+    res.setSurname("Pegolotti");
+    res.setDate(QDate::currentDate());
+    res.setStartingHour(1);
+    res.setEndingHour(4);
+    meetingRoomList.addElement(res);
+
+    res.setName("Anna");
+    res.setSurname("Bottoli");
+    res.setDate(QDate::currentDate());
+    res.setStartingHour(6);
+    res.setEndingHour(7);
+    */
+
+    MeetingRoomProgram program(meetingRoomList,displayedDate);
+    qDebug() << program.getNameAt(1);
+    MeetingRoomDaily* check = new MeetingRoomDaily(program,&meetingRoomList);
+    check->show();
+
 }

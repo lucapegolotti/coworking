@@ -25,9 +25,9 @@ class GenericList {
 
     void write(QJsonObject& json) const;
 
-    bool saveData(QString format);
+    bool saveData(QString format, QString filename);
 
-    bool loadData(QString format);
+    bool loadData(QString format, QString filename);
 
  private:
 
