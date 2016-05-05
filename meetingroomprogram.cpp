@@ -2,7 +2,7 @@
 
 MeetingRoomProgram::MeetingRoomProgram(GenericList<RSVMeetingRoom>& list, QDate current_date) :
     list(list) {
-    updateToDate(current_date);
+    updateToDate(current_date,false);
 }
 
 
@@ -22,7 +22,7 @@ QDate MeetingRoomProgram::getDate() const {
     return programdate;
 }
 
-void MeetingRoomProgram::updateToDate(QDate newDate){
+void MeetingRoomProgram::updateToDate(QDate newDate, bool classroom){
     programdate = newDate;
     for (int i = 0; i < 15; i++){
         names[i] = "";
@@ -33,7 +33,7 @@ void MeetingRoomProgram::updateToDate(QDate newDate){
 
     for (QList<RSVMeetingRoom>::iterator it = list_m.begin(); it < list_m.end(); it++){
         RSVMeetingRoom rsv = *it;
-        if (rsv.getDate() == programdate){
+        if (rsv.getDate() == programdate && rsv.isClassroom() == classroom){
             addReservation(rsv);
         }
     }

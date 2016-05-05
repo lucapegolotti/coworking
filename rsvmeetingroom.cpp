@@ -24,6 +24,10 @@ void RSVMeetingRoom::setEndingHour(int h) {
     ending_hour = h;
 }
 
+void RSVMeetingRoom::setClassroom(bool is_classroom) {
+    classroom = is_classroom;
+}
+
 QString RSVMeetingRoom::getName() const{
     return name;
 }
@@ -44,6 +48,10 @@ int RSVMeetingRoom::getEndingHour() const{
     return ending_hour;
 }
 
+bool RSVMeetingRoom::isClassroom() const{
+    return classroom;
+}
+
 void RSVMeetingRoom::read(const QJsonObject& json) {
     name = json["name"].toString();
     surname = json["surname"].toString();
@@ -53,6 +61,7 @@ void RSVMeetingRoom::read(const QJsonObject& json) {
     date.setDate(year,month,day);
     starting_hour = json["starthour"].toInt();
     ending_hour = json["endhour"].toInt();
+    classroom = json["classroom"].toBool();
 }
 
 void RSVMeetingRoom::write(QJsonObject& json) const {
@@ -63,6 +72,7 @@ void RSVMeetingRoom::write(QJsonObject& json) const {
     json["year"] = date.year();
     json["starthour"] = starting_hour;
     json["endhour"] = ending_hour;
+    json["classroom"] = classroom;
 }
 
 bool RSVMeetingRoom::operator==(const RSVMeetingRoom& other) const {
@@ -70,5 +80,6 @@ bool RSVMeetingRoom::operator==(const RSVMeetingRoom& other) const {
             surname == other.getSurname() &&
             date == other.getDate() &&
             starting_hour == other.getStartingHour() &&
-            ending_hour == other.getEndingHour());
+            ending_hour == other.getEndingHour() &&
+            classroom == other.isClassroom());
 }

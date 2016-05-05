@@ -63,7 +63,11 @@ MeetingRoomDaily::~MeetingRoomDaily()
 }
 
 void MeetingRoomDaily::updateToNewDate(QDate newDate){
-    displayed_program.updateToDate(newDate);
+    displayed_program.updateToDate(newDate,ui->corsiButton->isChecked());
+    updateWithProgram();
+}
+
+void MeetingRoomDaily::updateWithProgram(){
     for (int i = 0; i < 15; i++){
         names_labels[i]->setText(displayed_program.getNameAt(i));
     }
@@ -97,6 +101,7 @@ void MeetingRoomDaily::add(QString name,QString surname,int inithour,int endhour
     rsv.setStartingHour(inithour);
     rsv.setEndingHour(endhour);
     rsv.setDate(displayed_program.getDate());
+    rsv.setClassroom(ui->corsiButton->isChecked());
     rsvlist->addElement(rsv);
     rsvlist->saveData("json","prenotazioni_riunioni");
     displayed_program.addReservation(rsv);
@@ -104,4 +109,12 @@ void MeetingRoomDaily::add(QString name,QString surname,int inithour,int endhour
     for (int i = 0; i < 15; i++){
         names_labels[i]->setText(displayed_program.getNameAt(i));
     }
+}
+
+void MeetingRoomDaily::on_riunioniButton_clicked() {
+    updateToNewDate(displayed_date);
+}
+
+void MeetingRoomDaily::on_corsiButton_clicked() {
+    updateToNewDate(displayed_date);
 }

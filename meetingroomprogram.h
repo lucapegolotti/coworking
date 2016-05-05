@@ -19,7 +19,7 @@ public:
 
     void addReservation(RSVMeetingRoom rsv);
 
-    void updateToDate(QDate newDate);
+    void updateToDate(QDate newDate, bool classroom);
 
 private:
 

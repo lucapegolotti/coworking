@@ -34,7 +34,12 @@ class MeetingRoomDaily : public QWidget
 
     void updateToNewDate(QDate newDate);
 
- private:
+private slots:
+    void on_riunioniButton_clicked();
+
+    void on_corsiButton_clicked();
+
+private:
 
     Ui::MeetingRoomDaily *ui;
 
@@ -45,6 +50,8 @@ class MeetingRoomDaily : public QWidget
     QDate displayed_date;
 
     MeetingRoomProgram displayed_program;
+
+    void updateWithProgram();
 
 };
 

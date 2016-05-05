@@ -38,8 +38,6 @@ void Workstations::updateCurrentOrNextReservation(GenericList<Reservation> &list
                 currentOrNextReservation[targetWorkstation] = new Reservation(cur_user);
             }
         }
-
-
     }
 }
 

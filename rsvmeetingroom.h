@@ -23,6 +23,8 @@ public:
 
     void setEndingHour(int h);
 
+    void setClassroom(bool is_classroom);
+
     QString getName() const;
 
     QString getSurname() const;
@@ -32,6 +34,8 @@ public:
     int getStartingHour() const;
 
     int getEndingHour() const;
+
+    bool isClassroom() const;
 
     void read(const QJsonObject& json);
 
@@ -46,6 +50,8 @@ private:
     QString surname;
 
     QDate date;
+
+    bool classroom;
 
     int starting_hour;
 
