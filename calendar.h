@@ -36,6 +36,8 @@ private slots:
 
     void enable();
 
+    void dateChanged(QDate date);
+
 private:
 
     Ui::Calendar *ui;

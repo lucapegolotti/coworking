@@ -1,13 +1,14 @@
 #include "meetingroomdaily.h"
 #include "ui_meetingroomdaily.h"
 
-MeetingRoomDaily::MeetingRoomDaily(MeetingRoomProgram program,
+MeetingRoomDaily::MeetingRoomDaily(QDate current_date,
                                    GenericList<RSVMeetingRoom> *list,
                                    QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MeetingRoomDaily),
-    displayed_program(program),
-    rsvlist(list) {
+    rsvlist(list),
+    displayed_date(current_date),
+    displayed_program(*list, current_date) {
     ui->setupUi(this);
     QFont font1;
 
@@ -52,7 +53,7 @@ MeetingRoomDaily::MeetingRoomDaily(MeetingRoomProgram program,
     QObject::connect(ui->listWidget, SIGNAL(customContextMenuRequested(QPoint)),
                 this,SLOT(customMenuRequested(QPoint)));
 
-    updateWithProgram(program);
+    updateToNewDate(displayed_date);
 
 }
 
@@ -61,11 +62,10 @@ MeetingRoomDaily::~MeetingRoomDaily()
     delete ui;
 }
 
-void MeetingRoomDaily::updateWithProgram(MeetingRoomProgram &program){
-    displayed_program = program;
+void MeetingRoomDaily::updateToNewDate(QDate newDate){
+    displayed_program.updateToDate(newDate);
     for (int i = 0; i < 15; i++){
-        names_labels[i]->setText(program.getNameAt(i));
-        qDebug() << names_labels[i]->text();
+        names_labels[i]->setText(displayed_program.getNameAt(i));
     }
 }
 
@@ -100,5 +100,8 @@ void MeetingRoomDaily::add(QString name,QString surname,int inithour,int endhour
     rsvlist->addElement(rsv);
     rsvlist->saveData("json","prenotazioni_riunioni");
     displayed_program.addReservation(rsv);
-    updateWithProgram(displayed_program);
+
+    for (int i = 0; i < 15; i++){
+        names_labels[i]->setText(displayed_program.getNameAt(i));
+    }
 }

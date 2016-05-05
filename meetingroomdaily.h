@@ -20,11 +20,9 @@ class MeetingRoomDaily : public QWidget
 
  public:
 
-    MeetingRoomDaily(MeetingRoomProgram program, GenericList<RSVMeetingRoom>* list, QWidget *parent = 0);
+    MeetingRoomDaily(QDate current_date, GenericList<RSVMeetingRoom>* list, QWidget *parent = 0);
 
     ~MeetingRoomDaily();
-
-    void updateWithProgram(MeetingRoomProgram& program);
 
  public slots:
 
@@ -34,6 +32,7 @@ class MeetingRoomDaily : public QWidget
 
     void add(QString name,QString surname,int inithour,int endhour);
 
+    void updateToNewDate(QDate newDate);
 
  private:
 
@@ -42,6 +41,8 @@ class MeetingRoomDaily : public QWidget
     QListWidgetItem* names_labels[15];
 
     GenericList<RSVMeetingRoom>* rsvlist;
+
+    QDate displayed_date;
 
     MeetingRoomProgram displayed_program;
 

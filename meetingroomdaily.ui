@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>750</height>
+    <width>319</width>
+    <height>748</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>319</width>
+    <height>748</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>319</width>
+    <height>748</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Aula riunioni / Aula corsi</string>
@@ -18,7 +30,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>431</width>
+     <width>300</width>
      <height>672</height>
     </rect>
    </property>
@@ -49,7 +61,7 @@
     <rect>
      <x>10</x>
      <y>689</y>
-     <width>431</width>
+     <width>301</width>
      <height>51</height>
     </rect>
    </property>

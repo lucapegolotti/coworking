@@ -19,11 +19,15 @@ public:
 
     void addReservation(RSVMeetingRoom rsv);
 
+    void updateToDate(QDate newDate);
+
 private:
 
     QString names[15];
 
     QDate programdate;
+
+    GenericList<RSVMeetingRoom>& list;
 };
 
 #endif // MEETINGROOMPROGRAM_H

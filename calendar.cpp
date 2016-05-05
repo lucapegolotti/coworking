@@ -31,3 +31,7 @@ void Calendar::disable(){
 void Calendar::enable(){
     ui->calendarWidget->setEnabled(true);
 }
+
+void Calendar::dateChanged(QDate date){
+    ui->calendarWidget->setSelectedDate(date);
+}

@@ -68,6 +68,7 @@ signals:
 
     void finishedAddingReservation();
 
+    void changingDate(QDate date);
 
 private slots:
     void on_previousButton_clicked();
