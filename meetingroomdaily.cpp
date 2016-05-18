@@ -63,6 +63,7 @@ MeetingRoomDaily::~MeetingRoomDaily()
 }
 
 void MeetingRoomDaily::updateToNewDate(QDate newDate){
+    displayed_date = newDate;
     displayed_program.updateToDate(newDate,ui->corsiButton->isChecked());
     updateWithProgram();
 }
@@ -118,3 +119,4 @@ void MeetingRoomDaily::on_riunioniButton_clicked() {
 void MeetingRoomDaily::on_corsiButton_clicked() {
     updateToNewDate(displayed_date);
 }
+
