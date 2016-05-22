@@ -13,7 +13,7 @@ class Reservation {
 
     Reservation(QString name, QString surname, QString whopays, int workstation,
          float tariff, int hourLeft, bool alldayacc, bool deposit,
-         bool ethernet, bool telephone, QDate beginDate, QDate endDate);
+         bool ethernet, QDate beginDate, QDate endDate);
 
     void setName(QString name);
 
@@ -32,8 +32,6 @@ class Reservation {
     void setDepositKey(bool value);
 
     void setEthernet(bool value);
-
-    void setTelephone(bool value);
 
     void setBeginDate(int day, int month, int year);
 
@@ -56,8 +54,6 @@ class Reservation {
     bool getDepositKey() const;
 
     bool getEthernet() const;
-
-    bool getTelephone() const;
 
     int getBeginDay() const;
 
@@ -101,8 +97,6 @@ class Reservation {
     bool depositKey;
 
     bool ethernet;
-
-    bool telephone;
 
     // dates
     int beginDay;

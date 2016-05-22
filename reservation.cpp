@@ -4,7 +4,7 @@ Reservation::Reservation() {}
 
 Reservation::Reservation(QString name, QString surname, QString whopays, int workstation,
            float tariff, int hourLeft, bool alldayacc, bool deposit,
-           bool ethernet, bool telephone, QDate beginDate, QDate endDate) :
+           bool ethernet, QDate beginDate, QDate endDate) :
     name(name),
     surname(surname),
     whoPays(whopays),
@@ -14,7 +14,6 @@ Reservation::Reservation(QString name, QString surname, QString whopays, int wor
     allDayAccess(alldayacc),
     depositKey(deposit),
     ethernet(ethernet),
-    telephone(telephone),
     beginDay(beginDate.day()),
     beginMonth(beginDate.month()),
     beginYear(beginDate.year()),
@@ -58,10 +57,6 @@ void Reservation::setDepositKey(bool value){
 
 void Reservation::setEthernet(bool value){
     ethernet = value;
-}
-
-void Reservation::setTelephone(bool value){
-    telephone = value;
 }
 
 void Reservation::setBeginDate(int day, int month, int year){
@@ -112,10 +107,6 @@ bool Reservation::getEthernet() const{
     return ethernet;
 }
 
-bool Reservation::getTelephone() const{
-    return telephone;
-}
-
 int Reservation::getBeginDay() const{
     return beginDay;
 }
@@ -160,7 +151,6 @@ void Reservation::read(const QJsonObject &json){
     allDayAccess = json["alldayaccess"].toBool();
     depositKey = json["depositkey"].toBool();
     ethernet = json["ethernet"].toBool();
-    telephone = json["telephone"].toBool();
     beginDay = json["beginday"].toInt();
     beginMonth = json["beginmonth"].toInt();
     beginYear = json["beginyear"].toInt();
@@ -179,7 +169,6 @@ void Reservation::write(QJsonObject &json) const{
     json["alldayaccess"] = allDayAccess;
     json["depositkey"] = depositKey;
     json["ethernet"] = ethernet;
-    json["telephone"] = telephone;
     json["beginday"] = beginDay;
     json["beginmonth"] = beginMonth;
     json["beginyear"] = beginYear;
@@ -198,7 +187,6 @@ bool Reservation::operator==(const Reservation& other) const{
             allDayAccess == other.getAllDayAccess() &&
             depositKey == other.getDepositKey() &&
             ethernet == other.getEthernet() &&
-            telephone == other.getTelephone() &&
             beginDay == other.getBeginDay() &&
             beginMonth == other.getBeginMonth() &&
             beginYear == other.getBeginYear() &&

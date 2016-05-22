@@ -41,6 +41,8 @@ class Workstations{
 
     std::vector<QGraphicsRectItem*> workstations;
 
+    std::vector<QString> labels;
+
     Reservation* currentOrNextReservation[32];
 
     QDate currentDate;

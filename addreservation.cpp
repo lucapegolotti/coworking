@@ -8,12 +8,13 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
 {
     ui->setupUi(this);
     ui->beginDateEdit->setDate(beginDate);
+    ui->beginDateEdit->setMinimumDate(beginDate);
     ui->endDateEdit->setDate(beginDate);
     QDate myBirthday(1992,11,5);
     if (maximumEndDate != myBirthday){
         std::cout << maximumEndDate.day() << std::endl;
-        ui->endDateEdit->setMaximumDate(maximumEndDate);
-        ui->endDateEdit->setDate(maximumEndDate);
+        ui->endDateEdit->setMaximumDate(maximumEndDate.addDays(-1));
+        ui->endDateEdit->setDate(maximumEndDate.addDays(-1));
 
     }
 
@@ -131,7 +132,6 @@ void AddReservation::buttonOkPressed(){
     newuser.setWhoPays(ui->chiPagaLineEdit->text());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox->isChecked());
-    newuser.setTelephone(ui->telefonoCheckBox->isChecked());
     newuser.setDepositKey(ui->chiaveCheckBox->isChecked());
     newuser.setBeginDate(ui->beginDateEdit->date().day(),
                          ui->beginDateEdit->date().month(),

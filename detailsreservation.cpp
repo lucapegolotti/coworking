@@ -14,7 +14,6 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->tariffaSpinBox_2->setValue(user->getDailyTariff());
     ui->accesso24hCheckBox_2->setChecked(user->getAllDayAccess());
     ui->ethernetCheckBox_2->setChecked(user->getEthernet());
-    ui->telefonoCheckBox_2->setChecked(user->getTelephone());
     ui->chiaveCheckBox_2->setChecked(user->getDepositKey());
     ui->nomeLineEdit_2->setDisabled(true);
     ui->cognomeLineEdit_2->setDisabled(true);
@@ -22,7 +21,6 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->tariffaSpinBox_2->setDisabled(true);
     ui->accesso24hCheckBox_2->setDisabled(true);
     ui->ethernetCheckBox_2->setDisabled(true);
-    ui->telefonoCheckBox_2->setDisabled(true);
     ui->chiaveCheckBox_2->setDisabled(true);
     QObject::connect(ui->modificaButton,SIGNAL(clicked(bool)),
                      this,SLOT(modifyEntry(bool)));
@@ -70,7 +68,6 @@ void DetailsReservation::sendModifiedUser(){
     newuser.setWhoPays(ui->chiPagaLineEdit_2->text());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox_2->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox_2->isChecked());
-    newuser.setTelephone(ui->telefonoCheckBox_2->isChecked());
     newuser.setDepositKey(ui->chiaveCheckBox_2->isChecked());
     newuser.setBeginDate(user_det->getBeginDay(),user_det->getBeginMonth(),user_det->getBeginYear());
     newuser.setEndDate(user_det->getEndDay(),user_det->getEndMonth(),user_det->getEndYear());
@@ -87,6 +84,5 @@ void DetailsReservation::modifyEntry(bool){
     ui->tariffaSpinBox_2->setEnabled(true);
     ui->accesso24hCheckBox_2->setEnabled(true);
     ui->ethernetCheckBox_2->setEnabled(true);
-    ui->telefonoCheckBox_2->setEnabled(true);
     ui->chiaveCheckBox_2->setEnabled(true);
 }

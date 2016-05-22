@@ -60,52 +60,42 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="telefonoLabel">
-      <property name="text">
-       <string>Telefono</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QCheckBox" name="telefonoCheckBox"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="accesso24hLabel">
-      <property name="text">
-       <string>Accesso 24h</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QCheckBox" name="accesso24hCheckBox"/>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="chiaveLabel">
-      <property name="text">
-       <string>Chiave</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QCheckBox" name="chiaveCheckBox"/>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="ethernetLabel">
-      <property name="text">
-       <string>Ethernet</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="QCheckBox" name="ethernetCheckBox"/>
-    </item>
     <item row="3" column="1">
      <widget class="QDoubleSpinBox" name="tariffaSpinBox">
       <property name="maximum">
        <double>10000.000000000000000</double>
       </property>
      </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="accesso24hLabel">
+      <property name="text">
+       <string>Accesso 24h</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QCheckBox" name="accesso24hCheckBox"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="chiaveLabel">
+      <property name="text">
+       <string>Chiave</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QCheckBox" name="chiaveCheckBox"/>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="ethernetLabel">
+      <property name="text">
+       <string>Ethernet</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QCheckBox" name="ethernetCheckBox"/>
     </item>
    </layout>
   </widget>
