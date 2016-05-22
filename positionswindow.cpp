@@ -25,172 +25,46 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     QColor* backgroundColor = new QColor(242,250,255);
     scene->setBackgroundBrush(*backgroundColor);
 
-
-    QGraphicsRectItem* rect = new QGraphicsRectItem(mult*(-5+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(20+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(-5+xorigin),mult*50+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(20+xorigin),mult*50+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(95+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(120+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(95+xorigin),mult*50+multy,mult*50,mult*25);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(195+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(220+xorigin),mult*0+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(-30+xorigin),mult*175+multy,mult*50,mult*25);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(-30+xorigin),mult*200+multy,mult*50,mult*25);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(20+xorigin),mult*175+multy,mult*50,mult*25);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(20+xorigin),mult*200+multy,mult*50,mult*25);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(70+xorigin),mult*175+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(200+xorigin),mult*250+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(225+xorigin),mult*250+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(200+xorigin),mult*200+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(225+xorigin),mult*200+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(200+xorigin),mult*150+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(225+xorigin),mult*150+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
+    drawNewRectangle(scene,mult*(-5+xorigin),mult*0+multy,mult*25,mult*50,"41");
+    drawNewRectangle(scene,mult*(20+xorigin),mult*0+multy,mult*25,mult*50,"44");
+    drawNewRectangle(scene,mult*(-5+xorigin),mult*50+multy,mult*25,mult*50,"42");
+    drawNewRectangle(scene,mult*(20+xorigin),mult*50+multy,mult*25,mult*50,"43");
+    drawNewRectangle(scene,mult*(95+xorigin),mult*0+multy,mult*25,mult*50,"31");
+    drawNewRectangle(scene,mult*(120+xorigin),mult*0+multy,mult*25,mult*50,"33");
+    drawNewRectangle(scene,mult*(95+xorigin),mult*50+multy,mult*50,mult*25,"32");
+    drawNewRectangle(scene,mult*(195+xorigin),mult*0+multy,mult*25,mult*50,"21");
+    drawNewRectangle(scene,mult*(220+xorigin),mult*0+multy,mult*25,mult*50,"22");
+    drawNewRectangle(scene,mult*(-30+xorigin),mult*175+multy,mult*50,mult*25,"55");
+    drawNewRectangle(scene,mult*(-30+xorigin),mult*200+multy,mult*50,mult*25,"51");
+    drawNewRectangle(scene,mult*(20+xorigin),mult*175+multy,mult*50,mult*25,"54");
+    drawNewRectangle(scene,mult*(20+xorigin),mult*200+multy,mult*50,mult*25,"52");
+    drawNewRectangle(scene,mult*(70+xorigin),mult*175+multy,mult*25,mult*50,"53");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*250+multy,mult*25,mult*50,"R3");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*250+multy,mult*25,mult*50,"R4");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*200+multy,mult*25,mult*50,"R2");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*200+multy,mult*25,mult*50,"R5");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*150+multy,mult*25,mult*50,"R1");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*150+multy,mult*25,mult*50,"R6");
 
     const int a = 150;
     const int b = -10;
-    rect = new QGraphicsRectItem(mult*(a+200+xorigin),mult*(b+250)+multy,mult*25,mult*50);
+    drawNewRectangle(scene,mult*(a+200+xorigin),mult*(b+250)+multy,mult*25,mult*50,"G3");
+    drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*250+multy,mult*25,mult*50,"G4");
+    drawNewRectangle(scene,mult*a+mult*(200+xorigin),mult*b+mult*200+multy,mult*25,mult*50,"G2");
+    drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*200+multy,mult*25,mult*50,"G5");
+    drawNewRectangle(scene,mult*a+mult*(200+xorigin),mult*b+mult*150+multy,mult*25,mult*50,"G1");
+    drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*150+multy,mult*25,mult*50,"G6");
 
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*250+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*a+mult*(200+xorigin),mult*b+mult*200+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*200+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*a+mult*(200+xorigin),mult*b+mult*150+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*a+mult*(225+xorigin),mult*b+mult*150+multy,mult*25,mult*50);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(270+xorigin),mult*30+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(310+xorigin),mult*30+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(350+xorigin),mult*30+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(270+xorigin),mult*50+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(310+xorigin),mult*50+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
-
-    rect = new QGraphicsRectItem(mult*(350+xorigin),mult*50+multy,mult*40,mult*20);
-
-    scene->addItem(rect);
-    workstations.addGraphicItem(rect);
+    drawNewRectangle(scene,mult*(270+xorigin),mult*30+multy,mult*40,mult*20,"L6");
+    drawNewRectangle(scene,mult*(310+xorigin),mult*30+multy,mult*40,mult*20,"L5");
+    drawNewRectangle(scene,mult*(350+xorigin),mult*30+multy,mult*40,mult*20,"L4");
+    drawNewRectangle(scene,mult*(270+xorigin),mult*50+multy,mult*40,mult*20,"L1");
+    drawNewRectangle(scene,mult*(310+xorigin),mult*50+multy,mult*40,mult*20,"L2");
+    drawNewRectangle(scene,mult*(350+xorigin),mult*50+multy,mult*40,mult*20,"L3");
 
 
     // big rectangles
-    rect = new QGraphicsRectItem(mult*(-30+xorigin),0+multy,mult*100,mult*150);
+    QGraphicsRectItem* rect = new QGraphicsRectItem(mult*(-30+xorigin),0+multy,mult*100,mult*150);
     scene->addItem(rect);
 
     rect = new QGraphicsRectItem(mult*(70+xorigin),mult*0+multy,mult*100,mult*100);
@@ -244,6 +118,16 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
 
     QObject::connect(ui->actionProgramma_aula_riunioni_aula_corsi,SIGNAL(triggered(bool)),
                      this,SLOT(openMeetingRoomProgram()));
+}
+
+void PositionsWindow::drawNewRectangle(QGraphicsScene* scene,float tx, float ty, float bx, float by, QString label){
+    QGraphicsRectItem* rect = new QGraphicsRectItem(tx,ty,bx,by);
+    QGraphicsTextItem* name = new QGraphicsTextItem(label);
+
+    scene->addItem(rect);
+    workstations.addGraphicItem(rect);
+    name->setPos(tx,ty);
+    scene->addItem(name);
 }
 
 PositionsWindow::~PositionsWindow(){

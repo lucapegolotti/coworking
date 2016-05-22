@@ -76,6 +76,8 @@ private slots:
     void on_followingButton_clicked();
 
 private:
+    void drawNewRectangle(QGraphicsScene *scene, float tx, float ty, float bx, float by, QString label);
+
     Ui::PositionsWindow *ui;
 
     Workstations workstations;
