@@ -6,6 +6,14 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
     ui(new Ui::AddReservation),
     workstation_number(workst_number)
 {
+    tariffIsValid = false;
+    nameIsValid = false;
+    surnameIsValid = false;
+    telephoneIsValid = false;
+    emailIsValid = false;
+    whopaysIsValid = false;
+
+
     ui->setupUi(this);
     ui->beginDateEdit->setDate(beginDate);
     ui->beginDateEdit->setMinimumDate(beginDate);
@@ -35,6 +43,10 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
                      this,SLOT(nameChanged(QString)));
     QObject::connect(ui->cognomeLineEdit,SIGNAL(textChanged(QString)),
                      this,SLOT(surnameChanged(QString)));
+    QObject::connect(ui->telefonoLineEdit,SIGNAL(textChanged(QString)),
+                     this,SLOT(telephoneChanged(QString)));
+    QObject::connect(ui->emailLineEdit,SIGNAL(textChanged(QString)),
+                     this,SLOT(emailChanged(QString)));
     QObject::connect(ui->chiPagaLineEdit,SIGNAL(textChanged(QString)),
                      this,SLOT(whopaysChanged(QString)));
     QObject::connect(ui->tariffaSpinBox,SIGNAL(valueChanged(double)),
@@ -106,6 +118,16 @@ void AddReservation::surnameChanged(QString string){
     unlocksOkButton();
 }
 
+void AddReservation::telephoneChanged(QString string){
+    telephoneIsValid = string.length()>0;
+    unlocksOkButton();
+}
+
+void AddReservation::emailChanged(QString string){
+    emailIsValid = string.length()>0;
+    unlocksOkButton();
+}
+
 void AddReservation::whopaysChanged(QString string){
     whopaysIsValid = string.length()>0;
     unlocksOkButton();
@@ -117,7 +139,7 @@ void AddReservation::dailyTariffChanged(double number){
 }
 
 void AddReservation::unlocksOkButton(){
-    if (tariffIsValid && nameIsValid && surnameIsValid && whopaysIsValid){
+    if (tariffIsValid && nameIsValid && telephoneIsValid && emailIsValid && surnameIsValid && whopaysIsValid){
         ui->aggiungiButton->setEnabled(true);
     }
     else{
@@ -129,6 +151,8 @@ void AddReservation::buttonOkPressed(){
     Reservation newuser;
     newuser.setName(ui->nomeLineEdit->text());
     newuser.setSurname(ui->cognomeLineEdit->text());
+    newuser.setTelephone(ui->telefonoLineEdit->text());
+    newuser.setEmail(ui->emailLineEdit->text());
     newuser.setWhoPays(ui->chiPagaLineEdit->text());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox->isChecked());

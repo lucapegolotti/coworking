@@ -39,6 +39,10 @@ public slots:
 
     void surnameChanged(QString string);
 
+    void telephoneChanged(QString string);
+
+    void emailChanged(QString string);
+
     void whopaysChanged(QString string);
 
     void dailyTariffChanged(double number);
@@ -62,6 +66,10 @@ private:
     bool nameIsValid;
 
     bool surnameIsValid;
+
+    bool telephoneIsValid;
+
+    bool emailIsValid;
 
     bool whopaysIsValid;
 

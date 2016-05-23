@@ -11,13 +11,17 @@ class Reservation {
 
     Reservation();
 
-    Reservation(QString name, QString surname, QString whopays, int workstation,
+    Reservation(QString name, QString surname, QString telephone, QString email, QString whopays, int workstation,
          float tariff, int hourLeft, bool alldayacc, bool deposit,
          bool ethernet, QDate beginDate, QDate endDate);
 
     void setName(QString name);
 
     void setSurname(QString surname);
+
+    void setTelephone(QString telephone);
+
+    void setEmail(QString email);
 
     void setWhoPays(QString who);
 
@@ -40,6 +44,10 @@ class Reservation {
     QString getName() const;
 
     QString getSurname() const;
+
+    QString getTelephone() const;
+
+    QString getEmail() const;
 
     QString getWhoPays() const;
 
@@ -82,6 +90,10 @@ class Reservation {
     QString name;
 
     QString surname;
+
+    QString telephone;
+
+    QString email;
 
     QString whoPays;
 

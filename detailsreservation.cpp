@@ -10,6 +10,8 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->okButton->setDisabled(true);
     ui->nomeLineEdit_2->setText(user->getName());
     ui->cognomeLineEdit_2->setText(user->getSurname());
+    ui->telefonoLineEdit->setText(user->getTelephone());
+    ui->emailLineEdit->setText(user->getEmail());
     ui->chiPagaLineEdit_2->setText(user->getWhoPays());
     ui->tariffaSpinBox_2->setValue(user->getDailyTariff());
     ui->accesso24hCheckBox_2->setChecked(user->getAllDayAccess());
@@ -17,6 +19,8 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->chiaveCheckBox_2->setChecked(user->getDepositKey());
     ui->nomeLineEdit_2->setDisabled(true);
     ui->cognomeLineEdit_2->setDisabled(true);
+    ui->telefonoLineEdit->setDisabled(true);
+    ui->emailLineEdit->setDisabled(true);
     ui->chiPagaLineEdit_2->setDisabled(true);
     ui->tariffaSpinBox_2->setDisabled(true);
     ui->accesso24hCheckBox_2->setDisabled(true);
@@ -65,6 +69,8 @@ void DetailsReservation::sendModifiedUser(){
     Reservation newuser;
     newuser.setName(ui->nomeLineEdit_2->text());
     newuser.setSurname(ui->cognomeLineEdit_2->text());
+    newuser.setTelephone(ui->telefonoLineEdit->text());
+    newuser.setEmail(ui->emailLineEdit->text());
     newuser.setWhoPays(ui->chiPagaLineEdit_2->text());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox_2->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox_2->isChecked());
@@ -80,6 +86,8 @@ void DetailsReservation::modifyEntry(bool){
     ui->modificaButton->setDisabled(true);
     ui->nomeLineEdit_2->setEnabled(true);
     ui->cognomeLineEdit_2->setEnabled(true);
+    ui->telefonoLabel->setEnabled(true);
+    ui->emailLabel->setEnabled(true);
     ui->chiPagaLineEdit_2->setEnabled(true);
     ui->tariffaSpinBox_2->setEnabled(true);
     ui->accesso24hCheckBox_2->setEnabled(true);

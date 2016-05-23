@@ -2,11 +2,14 @@
 
 Reservation::Reservation() {}
 
-Reservation::Reservation(QString name, QString surname, QString whopays, int workstation,
+Reservation::Reservation(QString name, QString surname, QString telephone, QString email,
+                         QString whopays, int workstation,
            float tariff, int hourLeft, bool alldayacc, bool deposit,
            bool ethernet, QDate beginDate, QDate endDate) :
     name(name),
     surname(surname),
+    telephone(telephone),
+    email(email),
     whoPays(whopays),
     workstation(workstation),
     dailyTariff(tariff),
@@ -27,6 +30,14 @@ void Reservation::setName(QString name){
 
 void Reservation::setSurname(QString surname){
     this->surname = surname;
+}
+
+void Reservation::setTelephone(QString telephone){
+    this->telephone = telephone;
+}
+
+void Reservation::setEmail(QString email){
+    this->email = email;
 }
 
 void Reservation::setWhoPays(QString who){
@@ -77,6 +88,14 @@ QString Reservation::getName() const{
 
 QString Reservation::getSurname() const{
     return surname;
+}
+
+QString Reservation::getTelephone() const{
+    return telephone;
+}
+
+QString Reservation::getEmail() const{
+    return email;
 }
 
 QString Reservation::getWhoPays() const{
@@ -144,6 +163,8 @@ QDate Reservation::getEndDate() const{
 void Reservation::read(const QJsonObject &json){
     name = json["name"].toString();
     surname = json["surname"].toString();
+    telephone = json["telephone"].toString();
+    email = json["email"].toString();
     whoPays = json["whopays"].toString();
     workstation = json["workstation"].toInt();
     dailyTariff = (float) json["tariff"].toDouble();
@@ -162,6 +183,8 @@ void Reservation::read(const QJsonObject &json){
 void Reservation::write(QJsonObject &json) const{
     json["name"] = name;
     json["surname"]= surname;
+    json["telephone"] = telephone;
+    json["email"] = email;
     json["whopays"] = whoPays;
     json["workstation"] = workstation;
     json["tariff"] = dailyTariff;
@@ -180,6 +203,8 @@ void Reservation::write(QJsonObject &json) const{
 bool Reservation::operator==(const Reservation& other) const{
     return (name == other.getName() &&
             surname == other.getSurname() &&
+            telephone == other.getTelephone() &&
+            email == other.getEmail() &&
             whoPays == other.getWhoPays() &&
             workstation == other.getWorkstation() &&
             dailyTariff == other.getDailyTariff() &&
