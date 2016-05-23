@@ -12,6 +12,8 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
     telephoneIsValid = false;
     emailIsValid = false;
     whopaysIsValid = false;
+    badgeIsValid = false;
+    depositIsValid = true;
 
 
     ui->setupUi(this);
@@ -39,6 +41,8 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
 
     ui->aggiungiButton->setDisabled(true);
 
+    ui->armadiettoAggLineEdit->setDisabled(true);
+
     QObject::connect(ui->nomeLineEdit,SIGNAL(textChanged(QString)),
                      this,SLOT(nameChanged(QString)));
     QObject::connect(ui->cognomeLineEdit,SIGNAL(textChanged(QString)),
@@ -53,7 +57,12 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
                      this,SLOT(dailyTariffChanged(double)));
     QObject::connect(ui->beginDateEdit,SIGNAL(dateChanged(QDate)),
                      this,SLOT(beginDateChanged(QDate)));
-
+    QObject::connect(ui->chiaveCheckBox,SIGNAL(clicked(bool)),
+                     this,SLOT(enabledDeposit()));
+    QObject::connect(ui->armadiettoAggLineEdit,SIGNAL(textChanged(QString)),
+                     this,SLOT(depositChanged(QString)));
+    QObject::connect(ui->badgeLineEdit,SIGNAL(textChanged(QString)),
+                     this,SLOT(badgeChanged(QString)));
 
 }
 
@@ -139,7 +148,9 @@ void AddReservation::dailyTariffChanged(double number){
 }
 
 void AddReservation::unlocksOkButton(){
-    if (tariffIsValid && nameIsValid && telephoneIsValid && emailIsValid && surnameIsValid && whopaysIsValid){
+    if (tariffIsValid && nameIsValid && telephoneIsValid &&
+       emailIsValid && surnameIsValid && whopaysIsValid  &&
+       badgeIsValid && (depositIsValid || !ui->chiaveCheckBox->isChecked())){
         ui->aggiungiButton->setEnabled(true);
     }
     else{
@@ -154,9 +165,11 @@ void AddReservation::buttonOkPressed(){
     newuser.setTelephone(ui->telefonoLineEdit->text());
     newuser.setEmail(ui->emailLineEdit->text());
     newuser.setWhoPays(ui->chiPagaLineEdit->text());
+    newuser.setBadgeNumber(ui->badgeLineEdit->text().toInt());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox->isChecked());
     newuser.setDepositKey(ui->chiaveCheckBox->isChecked());
+    newuser.setDepositNumber(ui->armadiettoAggLineEdit->text());
     newuser.setBeginDate(ui->beginDateEdit->date().day(),
                          ui->beginDateEdit->date().month(),
                          ui->beginDateEdit->date().year());
@@ -176,4 +189,32 @@ void AddReservation::beginDateChanged(QDate date){
     if (date>=ui->endDateEdit->date())
         ui->endDateEdit->setDate(date);
     ui->endDateEdit->setMinimumDate(date);
+}
+
+void AddReservation::enabledDeposit() {
+
+    if (ui->armadiettoAggLineEdit->isEnabled()){
+        ui->armadiettoAggLineEdit->setDisabled(true);
+        ui->armadiettoAggLineEdit->setText("");
+        depositIsValid = true;
+
+    }
+    else {
+        ui->armadiettoAggLineEdit->setEnabled(true);
+        depositIsValid = false;
+    }
+    unlocksOkButton();
+
+}
+
+void AddReservation::depositChanged(QString string){
+    depositIsValid = string.length()>0;
+    unlocksOkButton();
+}
+
+void AddReservation::badgeChanged(QString string){
+    bool ret;
+    string.toInt(&ret);
+    badgeIsValid = string.length()>0 && ret;
+    unlocksOkButton();
 }

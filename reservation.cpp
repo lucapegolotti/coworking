@@ -3,19 +3,21 @@
 Reservation::Reservation() {}
 
 Reservation::Reservation(QString name, QString surname, QString telephone, QString email,
-                         QString whopays, int workstation,
-           float tariff, int hourLeft, bool alldayacc, bool deposit,
-           bool ethernet, QDate beginDate, QDate endDate) :
+                         QString whopays, int badge, int workstation,
+                         float tariff, int hourLeft, bool alldayacc,bool deposit,
+                         QString depositnum, bool ethernet, QDate beginDate, QDate endDate) :
     name(name),
     surname(surname),
     telephone(telephone),
     email(email),
     whoPays(whopays),
+    badgeNumber(badge),
     workstation(workstation),
     dailyTariff(tariff),
     meetingroomHoursLeft(hourLeft),
     allDayAccess(alldayacc),
     depositKey(deposit),
+    depositNumber(depositnum),
     ethernet(ethernet),
     beginDay(beginDate.day()),
     beginMonth(beginDate.month()),
@@ -44,6 +46,10 @@ void Reservation::setWhoPays(QString who){
     whoPays = who;
 }
 
+void Reservation::setBadgeNumber(int number){
+    badgeNumber = number;
+}
+
 void Reservation::setWorkstation(int workstation){
     this->workstation = workstation;
 }
@@ -64,6 +70,10 @@ void Reservation::setAllDayAccess(bool value){
 
 void Reservation::setDepositKey(bool value){
     depositKey = value;
+}
+
+void Reservation::setDepositNumber(QString number){
+    depositNumber = number;
 }
 
 void Reservation::setEthernet(bool value){
@@ -102,6 +112,10 @@ QString Reservation::getWhoPays() const{
     return whoPays;
 }
 
+int Reservation::getBadgeNumber() const{
+    return badgeNumber;
+}
+
 int Reservation::getWorkstation() const{
     return workstation;
 }
@@ -120,6 +134,10 @@ bool Reservation::getAllDayAccess() const{
 
 bool Reservation::getDepositKey() const{
     return depositKey;
+}
+
+QString Reservation::getDepositNumber() const{
+    return depositNumber;
 }
 
 bool Reservation::getEthernet() const{
@@ -166,11 +184,13 @@ void Reservation::read(const QJsonObject &json){
     telephone = json["telephone"].toString();
     email = json["email"].toString();
     whoPays = json["whopays"].toString();
+    badgeNumber = json["badge"].toInt();
     workstation = json["workstation"].toInt();
     dailyTariff = (float) json["tariff"].toDouble();
     meetingroomHoursLeft = json["meetinghoursleft"].toInt();
     allDayAccess = json["alldayaccess"].toBool();
     depositKey = json["depositkey"].toBool();
+    depositNumber = json["depositnumber"].toString();
     ethernet = json["ethernet"].toBool();
     beginDay = json["beginday"].toInt();
     beginMonth = json["beginmonth"].toInt();
@@ -186,11 +206,13 @@ void Reservation::write(QJsonObject &json) const{
     json["telephone"] = telephone;
     json["email"] = email;
     json["whopays"] = whoPays;
+    json["badge"] = badgeNumber;
     json["workstation"] = workstation;
     json["tariff"] = dailyTariff;
     json["meetinghoursleft"] = meetingroomHoursLeft;
     json["alldayaccess"] = allDayAccess;
     json["depositkey"] = depositKey;
+    json["depositnumber"] = depositNumber;
     json["ethernet"] = ethernet;
     json["beginday"] = beginDay;
     json["beginmonth"] = beginMonth;
@@ -206,11 +228,13 @@ bool Reservation::operator==(const Reservation& other) const{
             telephone == other.getTelephone() &&
             email == other.getEmail() &&
             whoPays == other.getWhoPays() &&
+            badgeNumber == other.getBadgeNumber() &&
             workstation == other.getWorkstation() &&
             dailyTariff == other.getDailyTariff() &&
             meetingroomHoursLeft == other.getMeetingroomHourse() &&
             allDayAccess == other.getAllDayAccess() &&
             depositKey == other.getDepositKey() &&
+            depositNumber == other.getDepositNumber() &&
             ethernet == other.getEthernet() &&
             beginDay == other.getBeginDay() &&
             beginMonth == other.getBeginMonth() &&

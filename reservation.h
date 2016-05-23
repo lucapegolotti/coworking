@@ -11,9 +11,10 @@ class Reservation {
 
     Reservation();
 
-    Reservation(QString name, QString surname, QString telephone, QString email, QString whopays, int workstation,
-         float tariff, int hourLeft, bool alldayacc, bool deposit,
-         bool ethernet, QDate beginDate, QDate endDate);
+    Reservation(QString name, QString surname, QString telephone, QString email,
+                QString whopays, int badge, int workstation,
+                float tariff, int hourLeft, bool alldayacc, bool deposit, QString depositnum,
+                bool ethernet, QDate beginDate, QDate endDate);
 
     void setName(QString name);
 
@@ -25,6 +26,8 @@ class Reservation {
 
     void setWhoPays(QString who);
 
+    void setBadgeNumber(int number);
+
     void setWorkstation(int workstation);
 
     void setDailyTariff(float tariff);
@@ -34,6 +37,8 @@ class Reservation {
     void setAllDayAccess(bool value);
 
     void setDepositKey(bool value);
+
+    void setDepositNumber(QString number);
 
     void setEthernet(bool value);
 
@@ -51,6 +56,8 @@ class Reservation {
 
     QString getWhoPays() const;
 
+    int getBadgeNumber() const;
+
     int getWorkstation() const;
 
     float getDailyTariff() const;
@@ -60,6 +67,8 @@ class Reservation {
     bool getAllDayAccess() const;
 
     bool getDepositKey() const;
+
+    QString getDepositNumber() const;
 
     bool getEthernet() const;
 
@@ -97,6 +106,8 @@ class Reservation {
 
     QString whoPays;
 
+    int badgeNumber;
+
     int workstation;
 
     float dailyTariff;
@@ -107,6 +118,8 @@ class Reservation {
     bool allDayAccess;
 
     bool depositKey;
+
+    QString depositNumber;
 
     bool ethernet;
 

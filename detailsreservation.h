@@ -27,6 +27,8 @@ public slots:
 
     void deleteUser();
 
+    void enableDeposit();
+
 signals:
 
     void cancelOrOkButtonSignal();

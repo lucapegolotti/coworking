@@ -49,6 +49,12 @@ public slots:
 
     void beginDateChanged(QDate date);
 
+    void enabledDeposit();
+
+    void depositChanged(QString string);
+
+    void badgeChanged(QString string);
+
 signals:
 
     void sendReservationToMainWindow(Reservation user);
@@ -70,6 +76,10 @@ private:
     bool telephoneIsValid;
 
     bool emailIsValid;
+
+    bool badgeIsValid;
+
+    bool depositIsValid;
 
     bool whopaysIsValid;
 

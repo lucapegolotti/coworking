@@ -13,19 +13,23 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->telefonoLineEdit->setText(user->getTelephone());
     ui->emailLineEdit->setText(user->getEmail());
     ui->chiPagaLineEdit_2->setText(user->getWhoPays());
+    ui->badgeLineEdit->setText(QString::number(user->getBadgeNumber()));
     ui->tariffaSpinBox_2->setValue(user->getDailyTariff());
     ui->accesso24hCheckBox_2->setChecked(user->getAllDayAccess());
     ui->ethernetCheckBox_2->setChecked(user->getEthernet());
     ui->chiaveCheckBox_2->setChecked(user->getDepositKey());
+    ui->armadiettoAggLineEdit->setText(user->getDepositNumber());
     ui->nomeLineEdit_2->setDisabled(true);
     ui->cognomeLineEdit_2->setDisabled(true);
     ui->telefonoLineEdit->setDisabled(true);
     ui->emailLineEdit->setDisabled(true);
     ui->chiPagaLineEdit_2->setDisabled(true);
+    ui->badgeLineEdit->setDisabled(true);
     ui->tariffaSpinBox_2->setDisabled(true);
     ui->accesso24hCheckBox_2->setDisabled(true);
     ui->ethernetCheckBox_2->setDisabled(true);
     ui->chiaveCheckBox_2->setDisabled(true);
+    ui->armadiettoAggLineEdit->setDisabled(true);
     QObject::connect(ui->modificaButton,SIGNAL(clicked(bool)),
                      this,SLOT(modifyEntry(bool)));
 
@@ -46,7 +50,8 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     QObject::connect(ui->eliminaButton,SIGNAL(clicked(bool)),
                      this,SLOT(deleteUser()));
 
-
+    QObject::connect(ui->chiaveCheckBox_2,SIGNAL(clicked(bool)),
+                     this,SLOT(enableDeposit()));
 
 
 }
@@ -72,9 +77,11 @@ void DetailsReservation::sendModifiedUser(){
     newuser.setTelephone(ui->telefonoLineEdit->text());
     newuser.setEmail(ui->emailLineEdit->text());
     newuser.setWhoPays(ui->chiPagaLineEdit_2->text());
+    newuser.setBadgeNumber(ui->badgeLineEdit->text().toInt());
     newuser.setDailyTariff(std::stof(ui->tariffaSpinBox_2->text().toStdString()));
     newuser.setEthernet(ui->ethernetCheckBox_2->isChecked());
     newuser.setDepositKey(ui->chiaveCheckBox_2->isChecked());
+    newuser.setDepositNumber(ui->armadiettoAggLineEdit->text());
     newuser.setBeginDate(user_det->getBeginDay(),user_det->getBeginMonth(),user_det->getBeginYear());
     newuser.setEndDate(user_det->getEndDay(),user_det->getEndMonth(),user_det->getEndYear());
     newuser.setWorkstation(user_det->getWorkstation());
@@ -89,8 +96,21 @@ void DetailsReservation::modifyEntry(bool){
     ui->telefonoLabel->setEnabled(true);
     ui->emailLabel->setEnabled(true);
     ui->chiPagaLineEdit_2->setEnabled(true);
+    ui->badgeLineEdit->setEnabled(true);
     ui->tariffaSpinBox_2->setEnabled(true);
     ui->accesso24hCheckBox_2->setEnabled(true);
     ui->ethernetCheckBox_2->setEnabled(true);
     ui->chiaveCheckBox_2->setEnabled(true);
+    if(ui->chiaveCheckBox_2->isChecked())
+        ui->armadiettoAggLineEdit->setEnabled(true);
+}
+
+void DetailsReservation::enableDeposit(){
+    if (ui->armadiettoAggLineEdit->isEnabled()){
+        ui->armadiettoAggLineEdit->setDisabled(true);
+        ui->armadiettoAggLineEdit->setText("");
+    }
+    else {
+        ui->armadiettoAggLineEdit->setEnabled(true);
+    }
 }

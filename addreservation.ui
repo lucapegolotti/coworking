@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>423</height>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,7 +19,7 @@
      <x>10</x>
      <y>10</y>
      <width>331</width>
-     <height>281</height>
+     <height>319</height>
     </rect>
    </property>
    <layout class="QFormLayout" name="formLayout_2">
@@ -53,48 +53,48 @@
     <item row="4" column="1">
      <widget class="QLineEdit" name="chiPagaLineEdit"/>
     </item>
-    <item row="5" column="0">
+    <item row="6" column="0">
      <widget class="QLabel" name="tariffaLabel">
       <property name="text">
        <string>Tariffa</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
+    <item row="6" column="1">
      <widget class="QDoubleSpinBox" name="tariffaSpinBox">
       <property name="maximum">
        <double>10000.000000000000000</double>
       </property>
      </widget>
     </item>
-    <item row="6" column="0">
+    <item row="7" column="0">
      <widget class="QLabel" name="accesso24hLabel">
       <property name="text">
-       <string>Accesso 24h</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QCheckBox" name="accesso24hCheckBox"/>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="chiaveLabel">
-      <property name="text">
-       <string>Chiave</string>
+       <string>Chiave esterna</string>
       </property>
      </widget>
     </item>
     <item row="7" column="1">
-     <widget class="QCheckBox" name="chiaveCheckBox"/>
+     <widget class="QCheckBox" name="accesso24hCheckBox"/>
     </item>
     <item row="8" column="0">
+     <widget class="QLabel" name="chiaveLabel">
+      <property name="text">
+       <string>Armadietto aggiuntivo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QCheckBox" name="chiaveCheckBox"/>
+    </item>
+    <item row="10" column="0">
      <widget class="QLabel" name="ethernetLabel">
       <property name="text">
        <string>Ethernet</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="1">
+    <item row="10" column="1">
      <widget class="QCheckBox" name="ethernetCheckBox"/>
     </item>
     <item row="2" column="0">
@@ -117,13 +117,33 @@
     <item row="3" column="1">
      <widget class="QLineEdit" name="emailLineEdit"/>
     </item>
+    <item row="9" column="0">
+     <widget class="QLabel" name="armadiettoAggLabel">
+      <property name="text">
+       <string># armadietto agg.</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QLineEdit" name="armadiettoAggLineEdit"/>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="badgeLabel">
+      <property name="text">
+       <string>Badge</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLineEdit" name="badgeLineEdit"/>
+    </item>
    </layout>
   </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>380</y>
      <width>331</width>
      <height>51</height>
     </rect>
@@ -149,7 +169,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>300</y>
+     <y>330</y>
      <width>331</width>
      <height>51</height>
     </rect>
