@@ -56,8 +56,6 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->beginDateLabel->setText(user->getBeginDate().toString(Qt::SystemLocaleShortDate));
     ui->endDateLabel->setText(user->getEndDate().toString(Qt::SystemLocaleShortDate));
 
-
-
 }
 
 DetailsReservation::~DetailsReservation()
@@ -97,8 +95,8 @@ void DetailsReservation::modifyEntry(bool){
     ui->modificaButton->setDisabled(true);
     ui->nomeLineEdit_2->setEnabled(true);
     ui->cognomeLineEdit_2->setEnabled(true);
-    ui->telefonoLabel->setEnabled(true);
-    ui->emailLabel->setEnabled(true);
+    ui->telefonoLineEdit->setEnabled(true);
+    ui->emailLineEdit->setEnabled(true);
     ui->chiPagaLineEdit_2->setEnabled(true);
     ui->badgeLineEdit->setEnabled(true);
     ui->tariffaSpinBox_2->setEnabled(true);
