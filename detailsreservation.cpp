@@ -53,6 +53,10 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     QObject::connect(ui->chiaveCheckBox_2,SIGNAL(clicked(bool)),
                      this,SLOT(enableDeposit()));
 
+    ui->beginDateLabel->setText(user->getBeginDate().toString(Qt::SystemLocaleShortDate));
+    ui->endDateLabel->setText(user->getEndDate().toString(Qt::SystemLocaleShortDate));
+
+
 
 }
 

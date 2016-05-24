@@ -6,153 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>399</width>
-    <height>421</height>
+    <width>400</width>
+    <height>441</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="formLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>341</width>
-     <height>329</height>
-    </rect>
-   </property>
-   <layout class="QFormLayout" name="formLayout_3">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
-    <property name="fieldGrowthPolicy">
-     <enum>QFormLayout::ExpandingFieldsGrow</enum>
-    </property>
-    <property name="bottomMargin">
-     <number>1</number>
-    </property>
-    <item row="0" column="0">
-     <widget class="QLabel" name="nomeLabel_2">
-      <property name="text">
-       <string>Nome</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLineEdit" name="nomeLineEdit_2"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLabel" name="cognomeLabel_2">
-      <property name="text">
-       <string>Cognome</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="cognomeLineEdit_2"/>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="chiPagaLabel_2">
-      <property name="text">
-       <string>Chi paga</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QLineEdit" name="chiPagaLineEdit_2"/>
-    </item>
-    <item row="6" column="0">
-     <widget class="QLabel" name="tariffaLabel_2">
-      <property name="text">
-       <string>Tariffa</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QDoubleSpinBox" name="tariffaSpinBox_2">
-      <property name="maximum">
-       <double>10000.000000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="accesso24hLabel_2">
-      <property name="text">
-       <string>Chiave esterna</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="QCheckBox" name="accesso24hCheckBox_2"/>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="chiaveLabel_2">
-      <property name="text">
-       <string>Armadietto aggiuntivo</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QCheckBox" name="chiaveCheckBox_2"/>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="ethernetLabel_2">
-      <property name="text">
-       <string>Ethernet</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="1">
-     <widget class="QCheckBox" name="ethernetCheckBox_2"/>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="telefonoLabel">
-      <property name="text">
-       <string>Telefono</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QLineEdit" name="telefonoLineEdit"/>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="emailLabel">
-      <property name="text">
-       <string>Email</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLineEdit" name="emailLineEdit"/>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="armadiettoAggLabel">
-      <property name="text">
-       <string># armadietto agg.</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="1">
-     <widget class="QLineEdit" name="armadiettoAggLineEdit"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="badgeLabel">
-      <property name="text">
-       <string>Badge</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QLineEdit" name="badgeLineEdit"/>
-    </item>
-   </layout>
-  </widget>
   <widget class="QWidget" name="horizontalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>370</y>
+     <y>390</y>
      <width>379</width>
      <height>41</height>
     </rect>
@@ -187,6 +52,314 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="tariffaLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>207</y>
+     <width>39</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Tariffa</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="chiPagaLineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>140</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="chiaveCheckBox_2">
+   <property name="geometry">
+    <rect>
+     <x>171</x>
+     <y>262</y>
+     <width>19</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="telefonoLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>83</y>
+     <width>53</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Telefono</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="chiaveLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>265</y>
+     <width>134</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Armadietto aggiuntivo</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="armadiettoAggLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>173</x>
+     <y>291</y>
+     <width>125</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="emailLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>110</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="telefonoLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>80</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="emailLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>114</y>
+     <width>33</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Email</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="ethernetCheckBox_2">
+   <property name="geometry">
+    <rect>
+     <x>171</x>
+     <y>319</y>
+     <width>19</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="armadiettoAggLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>291</y>
+     <width>108</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string># armadietto agg.</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="accesso24hCheckBox_2">
+   <property name="geometry">
+    <rect>
+     <x>171</x>
+     <y>238</y>
+     <width>19</width>
+     <height>18</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="tariffaSpinBox_2">
+   <property name="geometry">
+    <rect>
+     <x>173</x>
+     <y>207</y>
+     <width>89</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <double>10000.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="accesso24hLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>241</y>
+     <width>90</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Chiave esterna</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="cognomeLineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>50</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nomeLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>21</y>
+     <width>36</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Nome</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="nomeLineEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>20</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="cognomeLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>52</y>
+     <width>59</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cognome</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="chiPagaLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>145</y>
+     <width>54</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Chi paga</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="badgeLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>39</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Badge</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="badgeLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>170</y>
+     <width>281</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ethernetLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>322</y>
+     <width>52</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Ethernet</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="beginDateLabel">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>351</y>
+     <width>59</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>205</x>
+     <y>351</y>
+     <width>30</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Fine:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="endDateLabel">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>351</y>
+     <width>59</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>11</x>
+     <y>350</y>
+     <width>36</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Inizio:</string>
+   </property>
   </widget>
  </widget>
  <resources/>

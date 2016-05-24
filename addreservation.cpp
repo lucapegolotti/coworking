@@ -15,7 +15,6 @@ AddReservation::AddReservation(int workst_number, QDate beginDate, QDate maximum
     badgeIsValid = false;
     depositIsValid = true;
 
-
     ui->setupUi(this);
     ui->beginDateEdit->setDate(beginDate);
     ui->beginDateEdit->setMinimumDate(beginDate);
