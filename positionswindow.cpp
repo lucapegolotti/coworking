@@ -43,20 +43,20 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     drawNewRectangle(scene,mult*(20+xorigin),mult*200+multy,mult*50,mult*25,"52");
     drawNewRectangle(scene,mult*(70+xorigin),mult*175+multy,mult*25,mult*50,"53");
 
-    drawNewRectangle(scene,mult*(200+xorigin),mult*250+multy,mult*25,mult*50,"R3");
-    drawNewRectangle(scene,mult*(225+xorigin),mult*250+multy,mult*25,mult*50,"R4");
-    drawNewRectangle(scene,mult*(200+xorigin),mult*200+multy,mult*25,mult*50,"R2");
-    drawNewRectangle(scene,mult*(225+xorigin),mult*200+multy,mult*25,mult*50,"R5");
-    drawNewRectangle(scene,mult*(200+xorigin),mult*150+multy,mult*25,mult*50,"R1");
-    drawNewRectangle(scene,mult*(225+xorigin),mult*150+multy,mult*25,mult*50,"R6");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*250+multy,mult*25,mult*50,"R4");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*250+multy,mult*25,mult*50,"R1");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*200+multy,mult*25,mult*50,"R5");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*200+multy,mult*25,mult*50,"R2");
+    drawNewRectangle(scene,mult*(200+xorigin),mult*150+multy,mult*25,mult*50,"R6");
+    drawNewRectangle(scene,mult*(225+xorigin),mult*150+multy,mult*25,mult*50,"R3");
 
     const int a = 150;
     const int b = -10;
-    drawNewRectangle(scene,mult*(a+200+xorigin),mult*(b+250)+multy,mult*25,mult*50,"G3");
+    drawNewRectangle(scene,mult*(a+200+xorigin),mult*(b+250)+multy,mult*25,mult*50,"G1");
     drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*250+multy,mult*25,mult*50,"G4");
     drawNewRectangle(scene,mult*a+mult*(200+xorigin),mult*b+mult*200+multy,mult*25,mult*50,"G2");
     drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*200+multy,mult*25,mult*50,"G5");
-    drawNewRectangle(scene,mult*a+mult*(200+xorigin),mult*b+mult*150+multy,mult*25,mult*50,"G1");
+    drawNewRectangle(scene,mult*a+mult*(200+xorigin),mult*b+mult*150+multy,mult*25,mult*50,"G3");
     drawNewRectangle(scene,mult*a+mult*(225+xorigin),mult*b+mult*150+multy,mult*25,mult*50,"G6");
 
     drawNewRectangle(scene,mult*(270+xorigin),mult*30+multy,mult*40,mult*20,"L6");
