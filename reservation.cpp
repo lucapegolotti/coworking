@@ -24,7 +24,8 @@ Reservation::Reservation(QString name, QString surname, QString telephone, QStri
     beginYear(beginDate.year()),
     endDay(endDate.day()),
     endMonth(endDate.month()),
-    endYear(endDate.year()){}
+    endYear(endDate.year()),
+    payment(0.0){}
 
 void Reservation::setName(QString name){
     this->name = name;
@@ -90,6 +91,10 @@ void Reservation::setEndDate(int day, int month, int year){
     endDay = day;
     endMonth = month;
     endYear = year;
+}
+
+void Reservation::setPayment(double payment) {
+    this->payment = payment;
 }
 
 QString Reservation::getName() const{
@@ -178,6 +183,10 @@ QDate Reservation::getEndDate() const{
     return endDate;
 }
 
+double Reservation::getPayment() const{
+    return payment;
+}
+
 void Reservation::read(const QJsonObject &json){
     name = json["name"].toString();
     surname = json["surname"].toString();
@@ -198,6 +207,7 @@ void Reservation::read(const QJsonObject &json){
     endDay = json["endday"].toInt();
     endMonth = json["endmonth"].toInt();
     endYear = json["endyear"].toInt();
+    payment = json["payment"].toDouble();
 }
 
 void Reservation::write(QJsonObject &json) const{
@@ -220,6 +230,7 @@ void Reservation::write(QJsonObject &json) const{
     json["endday"] = endDay;
     json["endmonth"] = endMonth;
     json["endyear"] = endYear;
+    json["payment"] = payment;
 }
 
 bool Reservation::operator==(const Reservation& other) const{
@@ -241,6 +252,7 @@ bool Reservation::operator==(const Reservation& other) const{
             beginYear == other.getBeginYear() &&
             endDay == other.getEndDay() &&
             endMonth == other.getEndMonth() &&
-            endYear == other.getEndYear());
+            endYear == other.getEndYear() &&
+            payment == other.getPayment());
 
 }

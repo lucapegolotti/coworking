@@ -19,6 +19,7 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->ethernetCheckBox_2->setChecked(user->getEthernet());
     ui->chiaveCheckBox_2->setChecked(user->getDepositKey());
     ui->armadiettoAggLineEdit->setText(user->getDepositNumber());
+    ui->euroSpinBox->setValue(user->getPayment());
     ui->nomeLineEdit_2->setDisabled(true);
     ui->cognomeLineEdit_2->setDisabled(true);
     ui->telefonoLineEdit->setDisabled(true);
@@ -30,6 +31,8 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     ui->ethernetCheckBox_2->setDisabled(true);
     ui->chiaveCheckBox_2->setDisabled(true);
     ui->armadiettoAggLineEdit->setDisabled(true);
+    ui->accontoCheckBox->setDisabled(true);
+    ui->euroSpinBox->setDisabled(true);
     QObject::connect(ui->modificaButton,SIGNAL(clicked(bool)),
                      this,SLOT(modifyEntry(bool)));
 
@@ -53,8 +56,13 @@ DetailsReservation::DetailsReservation(Reservation* user,QWidget *parent) :
     QObject::connect(ui->chiaveCheckBox_2,SIGNAL(clicked(bool)),
                      this,SLOT(enableDeposit()));
 
+    QObject::connect(ui->accontoCheckBox,SIGNAL(clicked(bool)),
+                     this, SLOT(enablePayment()));
+
     ui->beginDateLabel->setText(user->getBeginDate().toString(Qt::SystemLocaleShortDate));
     ui->endDateLabel->setText(user->getEndDate().toString(Qt::SystemLocaleShortDate));
+
+
 
 }
 
@@ -87,6 +95,7 @@ void DetailsReservation::sendModifiedUser(){
     newuser.setBeginDate(user_det->getBeginDay(),user_det->getBeginMonth(),user_det->getBeginYear());
     newuser.setEndDate(user_det->getEndDay(),user_det->getEndMonth(),user_det->getEndYear());
     newuser.setWorkstation(user_det->getWorkstation());
+    newuser.setPayment(ui->euroSpinBox->value());
     sendModifiedUserSignal(user_det,newuser);
 }
 
@@ -103,6 +112,7 @@ void DetailsReservation::modifyEntry(bool){
     ui->accesso24hCheckBox_2->setEnabled(true);
     ui->ethernetCheckBox_2->setEnabled(true);
     ui->chiaveCheckBox_2->setEnabled(true);
+    ui->accontoCheckBox->setEnabled(true);
     if(ui->chiaveCheckBox_2->isChecked())
         ui->armadiettoAggLineEdit->setEnabled(true);
 }
@@ -114,5 +124,15 @@ void DetailsReservation::enableDeposit(){
     }
     else {
         ui->armadiettoAggLineEdit->setEnabled(true);
+    }
+}
+
+void DetailsReservation::enablePayment(){
+    if (ui->euroSpinBox->isEnabled()){
+        ui->euroSpinBox->setDisabled(true);
+        ui->euroSpinBox->setValue(0);
+    }
+    else {
+        ui->euroSpinBox->setEnabled(true);
     }
 }

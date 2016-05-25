@@ -46,6 +46,8 @@ class Reservation {
 
     void setEndDate(int day, int month, int year);
 
+    void setPayment(double payment);
+
     QString getName() const;
 
     QString getSurname() const;
@@ -85,6 +87,8 @@ class Reservation {
     int getEndMonth() const;
 
     int getEndYear() const;
+
+    double getPayment() const;
 
     QDate getEndDate() const;
 
@@ -135,6 +139,8 @@ class Reservation {
     int endMonth;
 
     int endYear;
+
+    double payment;
 
 };
 

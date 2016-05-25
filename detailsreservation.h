@@ -29,6 +29,8 @@ public slots:
 
     void enableDeposit();
 
+    void enablePayment();
+
 signals:
 
     void cancelOrOkButtonSignal();
