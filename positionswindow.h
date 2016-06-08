@@ -18,6 +18,7 @@
 #include <meetingroomdaily.h>
 #include <rsvmeetingroom.h>
 #include <meetingroomprogram.h>
+#include "directoryhandler.h"
 
 namespace Ui {
 class PositionsWindow;

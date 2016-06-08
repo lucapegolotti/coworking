@@ -9,6 +9,7 @@
 #include <QMenu>
 #include <iostream>
 #include <addmeetingroomrsv.h>
+#include <directoryhandler.h>
 
 namespace Ui {
 class MeetingRoomDaily;

@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     rsvmeetingroom.cpp \
     meetingroomdaily.cpp \
     meetingroomprogram.cpp \
-    addmeetingroomrsv.cpp
+    addmeetingroomrsv.cpp \
+    directoryhandler.cpp
 
 HEADERS  += positionswindow.h \
     workstations.h \
@@ -38,7 +39,8 @@ HEADERS  += positionswindow.h \
     meetingroomprogram.h \
     genericlist.h \
     genericlist-inl.h \
-    addmeetingroomrsv.h
+    addmeetingroomrsv.h \
+    directoryhandler.h
 
 FORMS    += positionswindow.ui \
     calendar.ui \

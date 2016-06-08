@@ -133,7 +133,7 @@ void MeetingRoomDaily::add(QString name,QString surname,int inithour,int endhour
     rsv.setDate(displayed_program.getDate());
     rsv.setClassroom(ui->corsiButton->isChecked());
     rsvlist->addElement(rsv);
-    rsvlist->saveData("json","prenotazioni_riunioni");
+    rsvlist->saveData("json",FILE_PATH("prenotazioni_riunioni"));
     // displayed_program.updateToDate(displayed_date,ui->corsiButton->isChecked());
     displayed_program.addReservation(rsv);
     updateWithProgram();
@@ -151,7 +151,7 @@ void MeetingRoomDaily::on_corsiButton_clicked() {
 void MeetingRoomDaily::deleteReservation(){
     qDebug() << last_rsv_clicked.getName();
     rsvlist->deleteElement(last_rsv_clicked);
-    rsvlist->saveData("json","prenotazioni_riunioni");
+    rsvlist->saveData("json",FILE_PATH("prenotazioni_riunioni"));
     displayed_program.deleteReservation(last_rsv_clicked);
     updateWithProgram();
 }

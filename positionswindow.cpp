@@ -9,8 +9,8 @@ PositionsWindow::PositionsWindow(QWidget *parent) :
     notFreeSpotColor(new QColor(253,152,152)),
     notAvailableInPeriodColor(new QColor(190,190,255)),
     checkAvailOpen(false){
-    meetingRoomList.loadData("json","prenotazioni_riunioni");
-    list.loadData("json","prenotazioni");
+    meetingRoomList.loadData("json",FILE_PATH("prenotazioni_riunioni"));
+    list.loadData("json",FILE_PATH("prenotazioni"));
 
     ui->setupUi(this);
 
@@ -225,13 +225,13 @@ void PositionsWindow::showDetails(bool){
 
 void PositionsWindow::modifyUser(Reservation* old_user,Reservation new_user){
     list.modifyElement(*old_user,new_user);
-    list.saveData("json","prenotazioni");
+    list.saveData("json",FILE_PATH("prenotazioni"));
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
 void PositionsWindow::deleteUser(Reservation *user){
     list.deleteElement(*user);
-    list.saveData("json","prenotazioni");
+    list.saveData("json",FILE_PATH("prenotazioni"));
     workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
 }
 
@@ -246,7 +246,7 @@ void PositionsWindow::addReservationResult(Reservation user){
         workstations.colorItems(list,*freeSpotColor,*notFreeSpotColor);
     else
         workstations.colorItemsWithAvailability(list,*freeSpotColor,*notAvailableInPeriodColor,endDateAvailability);
-    list.saveData("json","prenotazioni");
+    list.saveData("json",FILE_PATH("prenotazioni"));
 }
 
 void PositionsWindow::receiveNewDate(const QDate &date){
