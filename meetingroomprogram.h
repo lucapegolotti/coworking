@@ -17,9 +17,13 @@ public:
 
     QDate getDate() const;
 
-    void addReservation(RSVMeetingRoom rsv);
+    void addReservation(const RSVMeetingRoom rsv);
+
+    void deleteReservation(RSVMeetingRoom rsv);
 
     void updateToDate(QDate newDate, bool classroom);
+
+    RSVMeetingRoom rsvat(int i);
 
 private:
 
@@ -28,6 +32,8 @@ private:
     QDate programdate;
 
     GenericList<RSVMeetingRoom>& list;
+
+    RSVMeetingRoom rsv_ptr[15];
 };
 
 #endif // MEETINGROOMPROGRAM_H

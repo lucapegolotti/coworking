@@ -34,6 +34,8 @@ class MeetingRoomDaily : public QWidget
 
     void updateToNewDate(QDate newDate);
 
+    void deleteReservation();
+
 private slots:
     void on_riunioniButton_clicked();
 
@@ -50,6 +52,9 @@ private:
     QDate displayed_date;
 
     MeetingRoomProgram displayed_program;
+
+    RSVMeetingRoom last_rsv_clicked;
+
 
     void updateWithProgram();
 

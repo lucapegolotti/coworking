@@ -1,4 +1,4 @@
-#include "meetingroomdaily.h"
+ #include "meetingroomdaily.h"
 #include "ui_meetingroomdaily.h"
 
 MeetingRoomDaily::MeetingRoomDaily(QDate current_date,
@@ -8,7 +8,7 @@ MeetingRoomDaily::MeetingRoomDaily(QDate current_date,
     ui(new Ui::MeetingRoomDaily),
     rsvlist(list),
     displayed_date(current_date),
-    displayed_program(*list, current_date) {
+    displayed_program(*list, current_date){
     ui->setupUi(this);
     QFont font1;
 
@@ -37,6 +37,7 @@ MeetingRoomDaily::MeetingRoomDaily(QDate current_date,
         size.setHeight(3);
         size.setWidth(432);
         separator->setSizeHint(size);
+        separator->setText("");
         separator->setFlags(Qt::NoItemFlags);
         ui->listWidget->insertItem(row,separator);
 
@@ -84,6 +85,34 @@ void MeetingRoomDaily::customMenuRequested(QPoint pos){
 
     QObject::connect(addrsv,SIGNAL(triggered(bool)),
                  this,SLOT(addReservation()));
+    QListWidgetItem* pressed = ui->listWidget->itemAt(pos);
+    if (pressed == nullptr){
+        return;
+    }
+    int row = 0;
+    for (int i = 0 ; i < 15; i++){
+        if (ui->listWidget->item(row) == pressed)
+            return;
+        row = row + 1;
+        if (ui->listWidget->item(row) == pressed && ui->listWidget->item(row)->text() != ""){
+            QAction* deletersv = new QAction("Cancella prenotazione",this);
+
+            menu->addAction(deletersv);
+
+            menu->popup(ui->listWidget->viewport()->mapToGlobal(pos));
+
+            QObject::connect(deletersv,SIGNAL(triggered(bool)),
+                         this,SLOT(deleteReservation()));
+            last_rsv_clicked = displayed_program.rsvat(i);
+            return;
+        }
+        row = row+1;
+        if (ui->listWidget->item(row) == pressed)
+            return;
+        row = row + 1;
+    }
+
+
 
 }
 
@@ -105,11 +134,10 @@ void MeetingRoomDaily::add(QString name,QString surname,int inithour,int endhour
     rsv.setClassroom(ui->corsiButton->isChecked());
     rsvlist->addElement(rsv);
     rsvlist->saveData("json","prenotazioni_riunioni");
+    // displayed_program.updateToDate(displayed_date,ui->corsiButton->isChecked());
     displayed_program.addReservation(rsv);
+    updateWithProgram();
 
-    for (int i = 0; i < 15; i++){
-        names_labels[i]->setText(displayed_program.getNameAt(i));
-    }
 }
 
 void MeetingRoomDaily::on_riunioniButton_clicked() {
@@ -120,3 +148,10 @@ void MeetingRoomDaily::on_corsiButton_clicked() {
     updateToNewDate(displayed_date);
 }
 
+void MeetingRoomDaily::deleteReservation(){
+    qDebug() << last_rsv_clicked.getName();
+    rsvlist->deleteElement(last_rsv_clicked);
+    rsvlist->saveData("json","prenotazioni_riunioni");
+    displayed_program.deleteReservation(last_rsv_clicked);
+    updateWithProgram();
+}
