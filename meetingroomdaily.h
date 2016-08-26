@@ -56,7 +56,6 @@ private:
 
     RSVMeetingRoom last_rsv_clicked;
 
-
     void updateWithProgram();
 
 };

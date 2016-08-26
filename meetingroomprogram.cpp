@@ -41,7 +41,7 @@ void MeetingRoomProgram::updateToDate(QDate newDate, bool classroom){
     int i = 0;
     for (QList<RSVMeetingRoom>::iterator it = list_m.begin(); it < list_m.end(); it++){
         RSVMeetingRoom rsv = list_m.at(i);
-
+        i++;
         if (rsv.getDate() == programdate && rsv.isClassroom() == classroom){
             addReservation(rsv);
         }
